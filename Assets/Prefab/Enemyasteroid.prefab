@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1267070321503224939}
   - component: {fileID: 1696315592604541535}
   - component: {fileID: 36410157243973486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemyasteroid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   waitTimeX: 1
-  score: 10
+  score: 15
+  maxHp: 3
+  hp: 3
+  minMoveSpeed: 2
+  maxMoveSpeed: 4
+  minRotateSpeed: 30
+  maxRotateSpeed: 360
+  rotateSpeed: 0
+  childPrefab: {fileID: 7318009611851365568, guid: 26a5591799acc8741b3656ac42fef366, type: 3}
+  criticalRate: 0.95
 --- !u!58 &1696315592604541535
 CircleCollider2D:
   m_ObjectHideFlags: 0

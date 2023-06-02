@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     //delegate void OnEnemyKill(int score); //델리게이트 선언  리턴 타입 void
     //OnEnemyKill onEnemyKill;
-    public Action<int> onEnemyKill; //적을 Kill했을 때 신호를 보내는 delegate
+    //public Action<int> onEnemyKill; //적을 Kill했을 때 신호를 보내는 delegate
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
             Hit_Explosion.SetActive(true);
 
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>(); // 태그가 Enemy 이기때문에 EnemyBase가 null이 아니다.
-            onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
+           // onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
 
             Destroy(gameObject);
         }

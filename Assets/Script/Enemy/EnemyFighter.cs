@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyFighter : EnemyBase
 {
+    [Header("Fighter data")]
     public float amplitude = 4.0f;
     public float frequency = 2.0f; //사인그래프가 한번 왕복하는데 걸리는 시간
     public float spawnY;// 시작할때 높이
@@ -38,9 +39,14 @@ public class EnemyFighter : EnemyBase
 
         //transform.Translate(Time.deltaTime * speed * Vector2.left);
     }
-    protected override void Die()
-    {
-        base.Die();
-    }
 
+    public override void OnInitialize()
+    {
+        base.OnInitialize();
+       // Hp = 2;
+    }
+    //protected override void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    base.OnCollisionEnter2D(collision);
+    //}
 }

@@ -1,20 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Spawner : MonoBehaviour
 {
+    //스폰할 오브젝트 프리팹
     public GameObject spawnTarget;
+
+    //스폰 높이폭
     public float rangeY = 4;
     public float rangeX = 0.5f;
-    public float interval = 0.5f;
 
+
+    public float interval = 0.5f;
+    Player player;
     
-    protected virtual void Spawn()
+    protected virtual EnemyBase Spawn()
     {
         GameObject obj = Instantiate(spawnTarget);
         obj.transform.position = new Vector3(transform.position.x, Random.Range(rangeY, -rangeY), 0);
-        Debug.Log("스포너 스폰 함수");
+
+        EnemyBase enemy = obj.GetComponent<EnemyBase>();
+        enemy.OnInitialize();
+        enemy.onDie += player.AddScore;
+        return obj.GetComponent<EnemyBase>();
     }
 
     IEnumerator SpawnCoroutine()
@@ -43,12 +53,9 @@ public class Spawner : MonoBehaviour
     }
     void Start()
     {
+        player = FindObjectOfType<Player>();
         StartCoroutine(SpawnCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

@@ -8,6 +8,9 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    public float moveableRangeX = 8.2f; 
+    public float moveableRangeY = 4.3f;
+
     int score = 0;
     public int Score //델리게이트를 사용하면 그냥 set함수에서 호출할 때보다 결합도가 낮아져서 유지보수가 더 수월하다.
     {
@@ -18,14 +21,15 @@ public class Player : MonoBehaviour
             {
                 score = value;
             }
-            OnScoreChange?.Invoke(score);
-
-            int priviousScore = score;
+            //OnScoreChange?.Invoke(score);
             score = value;
-            int scoreParameter = value - priviousScore;
 
             
         }
+    }
+    public void AddScore(int newscore)
+    {
+        Score += newscore;
     }
     public Action<int> OnScoreChange; // 1. 델리게이트를 만들어준다  2. 어디서 호출할지를 지정한다. 호출위치에서 함수이름?.Invoke(매개변수)
                                       // 3. 다른곳에서 델리게이트를 만든 클래스,객체를 찾은 다음 델리게이트 함수에 다른 함수를 연결해준다. 
@@ -46,8 +50,8 @@ public class Player : MonoBehaviour
 
     WaitForSeconds fireWait; //캐싱
     WaitForSeconds flashWait;
-    SpriteRenderer spriteRenderer;
 
+    Rigidbody2D rigid;
 
   
 
@@ -55,6 +59,7 @@ public class Player : MonoBehaviour
     {
         playerInputAction = new PlayerInputAction();
         anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody2D>();
 
         fireCoroutine = FireCoroutine(); //함수자체를 저장
         fireTransform = transform.GetChild(0);
@@ -62,7 +67,6 @@ public class Player : MonoBehaviour
         flashWait = new WaitForSeconds(0.1f); //캐싱
 
         fireFlash = transform.GetChild(1).gameObject;
-        spriteRenderer = GetComponent<SpriteRenderer>();
         Explosion = transform.GetChild(2).gameObject;
 
     }
@@ -75,6 +79,16 @@ public class Player : MonoBehaviour
         playerInputAction.Player.Boost.canceled += OnBoost;
         playerInputAction.Player.Fire.performed += OnFire_Start;
         playerInputAction.Player.Fire.canceled += OnFire_Stop;
+    }
+    private void OnDisable()
+    {
+        playerInputAction.Player.Move.performed -= OnMove;
+        playerInputAction.Player.Move.canceled -= OnMove;
+        playerInputAction.Player.Boost.performed -= OnBoost;
+        playerInputAction.Player.Boost.canceled -= OnBoost;
+        playerInputAction.Player.Fire.performed -= OnFire_Start;
+        playerInputAction.Player.Fire.canceled -= OnFire_Stop;
+        playerInputAction.Player.Disable();
     }
     private void OnFire_Start(InputAction.CallbackContext _)
     {
@@ -96,9 +110,9 @@ public class Player : MonoBehaviour
             GameObject newbullet = Instantiate(bullet);
             newbullet.transform.position = fireTransform.position;
 
-            Bullet bulletComp = newbullet.GetComponent<Bullet>();
+           // Bullet bulletComp = newbullet.GetComponent<Bullet>();
             //bulletComp.onEnemyKill += AddScore; 아래와 같은 코드 OnEnemyKill 에 AddScore함수 등록
-            bulletComp.onEnemyKill += (newScore) => Score += newScore; // 람다식 (newScore 파라미터) 이후는 함수 바디부분
+            //bulletComp.onEnemyKill += (newScore) => Score += newScore; // 람다식 (newScore 파라미터) 이후는 함수 바디부분
             StartCoroutine(FlashEffect());
 
             yield return fireWait;
@@ -110,10 +124,7 @@ public class Player : MonoBehaviour
     //{
     //    onTest += (testScore) => testScore + 3.45f;
     //}
-    //void AddScore(int newscore)
-    //{
-    //    Score += newscore;
-    //}
+
     IEnumerator FlashEffect()
     {
         fireFlash.SetActive(true); //활성화
@@ -155,10 +166,13 @@ public class Player : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        transform.position += Time.deltaTime * speed * boost * direction;
+        //transform.position += Time.deltaTime * speed * boost * direction;
+        rigid.MovePosition(rigid.position + (Vector2)(Time.deltaTime * speed * boost * direction));
     }
+
+ 
     private void OnBoost(InputAction.CallbackContext context)
     {
         if (context.canceled)
@@ -171,28 +185,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        playerInputAction.Player.Move.performed -= OnMove;
-        playerInputAction.Player.Move.canceled -= OnMove;
-        playerInputAction.Player.Boost.performed -= OnBoost;
-        playerInputAction.Player.Boost.canceled -= OnBoost;
-        playerInputAction.Player.Disable();
-    }
+
 
     private void OnMove(InputAction.CallbackContext context)
     {       
         Vector2 value = context.ReadValue<Vector2>();
-        direction = value;
-        if (value.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }    
+        direction = value;  
         anim.SetFloat(inputY_String, direction.y);  //   //anim.SetFloat("InputY", direction.y); 같은 코드
+
+    
+        //if (transform.position.x)
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
