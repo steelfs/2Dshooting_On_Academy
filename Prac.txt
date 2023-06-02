@@ -1,0 +1,39 @@
+6월 2일
+
+ //죽을 때 랜덤한 회전과, 각도로 날아가는 미니 랜덤한 갯수 95%확률로(3개 ~7개) 5%확률로 20개  생성
+        //미니운석은 항상 같은 사이각을 가진다.
+        //날아가는 방향은 랜덤
+
+        // 1. 운석을 생성한다.  2. 생성될 갯수를 랜덤으로 바꾼다.  3. 로테이션을 사용해 회전각을 바꿔 진행방향을 바꾼다. 4. 회전각 / 생성된 횟수   를 나눠서 일정한 사이각을 정한다.
+
+	
+public GameObject mini;
+
+override void Die()
+{
+	int count;
+	if (random.value < criticalRate)
+		
+	for (int i =0; i <)
+}
+
+
+싱글톤
+
+생성자를 private으로 만들고 프로퍼티를 생성한다.
+(private) staic Singleton instance;
+
+public static Singleton Instance
+{
+	SingleTon singleTon = FindObjectOfType<SingleTon>(); // 기존에 싱글톤이 있는지 체크
+	if (singleTon == null)
+		gameObect gameObj = new GameObject();
+		gameObj.name = "SingleTon";
+		gameObject.AddComponent<singleTon>();
+
+	instance = singleTon;
+	DontDestroyOnLoad(instance.gameObject);// 씬이 변경되도 파괴하지 마라
+	}
+	return instance;
+
+}

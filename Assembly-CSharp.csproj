@@ -82,8 +82,10 @@
     <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
     <Compile Include="Assets\Script\Enemy\TestEnemy.cs" />
-    <Compile Include="Assets\Script\Core\SingleTon.cs" />
     <Compile Include="Assets\Script\UI\TestSingleTon.cs" />
+    <Compile Include="Assets\Script\Core\Singleton.cs" />
+    <Compile Include="Assets\Script\Core\SingleTonExample.cs" />
+    <Compile Include="Assets\Script\Test\TestSingletonComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
