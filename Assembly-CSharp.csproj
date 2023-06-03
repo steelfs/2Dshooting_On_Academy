@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AD9C60E2-6164-F7BF-4EC0-1FBD5A81BCD5}</ProjectGuid>
+    <ProjectGuid>{A4386F9D-CA9A-94A6-5DBD-FEE49B3B248D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,19 +57,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Enemy\EnemyAsteroidMini.cs" />
+    <Compile Include="Assets\Script\Core\Branchtest.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyForTest.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Script\Test\Test_Delegate.cs" />
+    <Compile Include="Assets\Script\Core\SingleTon.cs" />
     <Compile Include="Assets\Script\Effect\BulletExplosion.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnerAsteroid.cs" />
     <Compile Include="Assets\Script\Enemy\Spawner.cs" />
     <Compile Include="Assets\Script\Test\TestSpawner.cs" />
     <Compile Include="Assets\Script\Effect\Explosion.cs" />
     <Compile Include="Assets\Action\PlayerInputAction.cs" />
+    <Compile Include="Assets\Script\UI\TestSingleTon.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground.cs" />
+    <Compile Include="Assets\Script\Enemy\TestEnemy.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
     <Compile Include="Assets\Script\UI\ScoreTxt.cs" />
+    <Compile Include="Assets\Script\Test\TestSingletonComponent.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground_Planet.cs" />
     <Compile Include="Assets\Script\Test\TestBase.cs" />
     <Compile Include="Assets\Action\EnemyInputAction.cs" />
@@ -78,14 +83,10 @@
     <Compile Include="Assets\Script\Enemy\EnemyFighter.cs" />
     <Compile Include="Assets\Action\HitMoveAction.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground_Star.cs" />
+    <Compile Include="Assets\Script\Core\SingleTonExample.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
-    <Compile Include="Assets\Script\Enemy\TestEnemy.cs" />
-    <Compile Include="Assets\Script\UI\TestSingleTon.cs" />
-    <Compile Include="Assets\Script\Core\Singleton.cs" />
-    <Compile Include="Assets\Script\Core\SingleTonExample.cs" />
-    <Compile Include="Assets\Script\Test\TestSingletonComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
