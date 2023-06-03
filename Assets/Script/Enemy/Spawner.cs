@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Spawner : MonoBehaviour
 {
     //스폰할 오브젝트 프리팹
-    public GameObject spawnTarget;
+    public GameObject[] spawnTarget;
 
     //스폰 높이폭
     public float rangeY = 4;
@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     
     protected virtual EnemyBase Spawn()
     {
-        GameObject obj = Instantiate(spawnTarget);
+        GameObject obj = Instantiate(spawnTarget[Random.Range(0,4)]);
         obj.transform.position = new Vector3(transform.position.x, Random.Range(rangeY, -rangeY), 0);
 
         EnemyBase enemy = obj.GetComponent<EnemyBase>();

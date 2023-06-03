@@ -87,6 +87,11 @@
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
+    <Compile Include="Assets\Script\Item\ItemBase.cs" />
+    <Compile Include="Assets\Script\Item\PowerUpItem.cs" />
+    <Compile Include="Assets\Script\Enemy\Monster1.cs" />
+    <Compile Include="Assets\Script\Enemy\Monster2.cs" />
+    <Compile Include="Assets\Script\Enemy\Monster3.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
