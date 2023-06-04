@@ -198,12 +198,12 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Explosion.transform.SetParent(null);
-            Explosion.SetActive(true);
-            Destroy(gameObject);
-        }
+        //if (collision.gameObject.CompareTag("Enemy"))
+        //{
+        //    Explosion.transform.SetParent(null);
+        //    Explosion.SetActive(true);
+        //    Destroy(gameObject);
+        //}
     }
     //delegate = 함수를 변수처럼 , 신호를 보내면 각각 신호를 받은 객체에서 독립된 로직을 실행한다.
 }

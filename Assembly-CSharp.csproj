@@ -66,14 +66,17 @@
     <Compile Include="Assets\Script\Enemy\SpawnerAsteroid.cs" />
     <Compile Include="Assets\Script\Enemy\Spawner.cs" />
     <Compile Include="Assets\Script\Test\TestSpawner.cs" />
+    <Compile Include="Assets\Script\Enemy\Monster2.cs" />
     <Compile Include="Assets\Script\Effect\Explosion.cs" />
     <Compile Include="Assets\Action\PlayerInputAction.cs" />
+    <Compile Include="Assets\Script\Enemy\Monster1.cs" />
     <Compile Include="Assets\Script\UI\TestSingleTon.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground.cs" />
     <Compile Include="Assets\Script\Enemy\TestEnemy.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Player\Bullet.cs" />
     <Compile Include="Assets\Script\UI\ScoreTxt.cs" />
+    <Compile Include="Assets\Script\Item\PowerUpItem.cs" />
     <Compile Include="Assets\Script\Test\TestSingletonComponent.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground_Planet.cs" />
     <Compile Include="Assets\Script\Test\TestBase.cs" />
@@ -85,13 +88,10 @@
     <Compile Include="Assets\Script\Etc\Back_Ground_Star.cs" />
     <Compile Include="Assets\Script\Core\SingleTonExample.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
-    <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
-    <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
-    <Compile Include="Assets\Script\Item\ItemBase.cs" />
-    <Compile Include="Assets\Script\Item\PowerUpItem.cs" />
-    <Compile Include="Assets\Script\Enemy\Monster1.cs" />
-    <Compile Include="Assets\Script\Enemy\Monster2.cs" />
     <Compile Include="Assets\Script\Enemy\Monster3.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
+    <Compile Include="Assets\Script\Item\ItemBase.cs" />
+    <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

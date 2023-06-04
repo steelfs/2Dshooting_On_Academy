@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour
     }
 
     public Action<int> onDie;
-    private void Awake()
+    protected virtual void Awake()
     {
         hp = maxHp;
         explosion = transform.GetChild(0).gameObject; //이펙트 찾아놓기
@@ -50,7 +50,6 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnMoveUpdate() // 업데이트에서 실행되는 이동처리 함수
     {
-        Debug.Log("이동");
         transform.Translate(Time.deltaTime * speed * -transform.right); // 그냥 왼쪽으로 이동하기
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
