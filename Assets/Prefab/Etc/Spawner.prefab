@@ -45,10 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTarget:
-  - {fileID: 3032489245952800091, guid: f60216f38a32be44ebc8bbbd6de7a30f, type: 3}
-  - {fileID: 102540, guid: f80fb89b6c6c066439ec2c51d1dc3787, type: 3}
-  - {fileID: 134238, guid: f8b49e03b13654f428c535d0d316e9cd, type: 3}
-  - {fileID: 178862, guid: 556a8890b9b466646a50646db8ac1bb8, type: 3}
+  - {fileID: 1242932154056022032, guid: 5a0acf412911b2345aea7acef4587bf1, type: 3}
   rangeY: 4
   rangeX: 0.5
-  interval: 0.5
+  interval: 10

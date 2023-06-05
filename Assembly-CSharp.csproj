@@ -87,11 +87,13 @@
     <Compile Include="Assets\Action\HitMoveAction.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground_Star.cs" />
     <Compile Include="Assets\Script\Core\SingleTonExample.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Script\Enemy\Monster3.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
     <Compile Include="Assets\Script\Item\ItemBase.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
+    <Compile Include="Assets\Script\Enemy\MonsterCurve.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyStrike.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyBoss.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

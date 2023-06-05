@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     
     protected virtual EnemyBase Spawn()
     {
-        GameObject obj = Instantiate(spawnTarget[Random.Range(0,4)]);
+        GameObject obj = Instantiate(spawnTarget[0]);
         obj.transform.position = new Vector3(transform.position.x, Random.Range(rangeY, -rangeY), 0);
 
         EnemyBase enemy = obj.GetComponent<EnemyBase>();
