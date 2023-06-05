@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5338370789495159309, guid: b787d2e4f951cd84d9f0638a7cafc14d, type: 3}
       propertyPath: interval
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5338370789495159309, guid: b787d2e4f951cd84d9f0638a7cafc14d, type: 3}
       propertyPath: spawnTarget.Array.data[0]
