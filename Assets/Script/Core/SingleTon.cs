@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Singleton<T> : MonoBehaviour where T : Component // where T : Component   T = component이다. 다른것은 넣을 수 없다 
 {
@@ -35,8 +36,6 @@ public class Singleton<T> : MonoBehaviour where T : Component // where T : Compo
             return instance; //instance 리턴 (이미 있거나 새로 만들어졌거나)
         }
     }
-    public int testI = 0;
-
     private void Awake()
     {
         if (instance == null)
@@ -54,6 +53,29 @@ public class Singleton<T> : MonoBehaviour where T : Component // where T : Compo
             }
         }
     }
+    public int testI = 0;
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnsceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnsceneLoaded;
+    }
+    private void OnsceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        OnInitialize();
+    }
+
+    protected virtual void OnInitialize()
+    {
+
+    }
 
 
+    private void OnApplicationQuit()
+    {
+        isShutDown = true;
+    }
+  
 }

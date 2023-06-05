@@ -29,19 +29,16 @@ public class EnemyBoss : EnemyBase
         speed = 0; // 속도를 0으로 안움직이게 만듦
         float remainDistance = 5; //남은 거리 5
 
-
-
         while (remainDistance > 0.01f) // 남아있는 거리가 거의 0이 될 때 까지 반복
         {
             // 0에서 remainDistance까지 가는 중 Time.deltaTime * 0.5f만큼 진행된 위치
-            float deltaMove = Mathf.Lerp(remainDistance, 0, Time.deltaTime * 1.2f);
+            float deltaMove = Mathf.Lerp(0, remainDistance, Time.deltaTime * 1.2f);
             remainDistance -= deltaMove; // deltamove만큼 남은거리 감소 
             transform.Translate(deltaMove * (-Vector3.right)); //deltamove만큼 왼쪽으로 이동
                        
             yield return null;
         }
 
-       // yield return new WaitForSeconds(appearTime); 
         speed = oldSpeed;
         SetNextTargetPos();
     }
@@ -56,19 +53,13 @@ public class EnemyBoss : EnemyBase
         //    //타겟지점에 거의 가까워지면
         //    SetNextTargetPos();
         //}
-        if (targetPos.y > 0) // 위 코드는 vector의 값을 모두 계산해야하지만 아래 if문은 Y값만 계산을 하기 때문에 연산량이 훨씬 적다
+        if (transform.position.y > areaMax.y) // 위 코드는 vector의 값을 모두 계산해야하지만 아래 if문은 Y값만 계산을 하기 때문에 연산량이 훨씬 적다
         {
-            if (transform.position.y > targetPos.y)// 만약 위쪽으로 이동해서 범위를 벗어날경우 목적지 초기화
-            {
-                SetNextTargetPos();
-            }
+            SetNextTargetPos();
         }
-        else
+        else if (transform.position.y < areaMin.y)
         {
-            if (transform.position.y < targetPos.y)// 만약 아랫쪽으로 이동해서 범위를 벗어날경우 목적지 초기화
-            {
-                SetNextTargetPos();
-            }
+            SetNextTargetPos();
         }
     }
 

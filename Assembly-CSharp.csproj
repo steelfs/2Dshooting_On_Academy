@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Enemy\EnemyAsteroidMini.cs" />
-    <Compile Include="Assets\Script\Core\Branchtest.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyForTest.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Script\Test\Test_Delegate.cs" />
@@ -94,6 +93,10 @@
     <Compile Include="Assets\Script\Item\ItemBase.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
     <Compile Include="Assets\Script\Enemy\MonsterCurve.cs" />
+    <Compile Include="Assets\Script\Enemy\Square.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyBullet.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyMissile.cs" />
+    <Compile Include="Assets\Script\Core\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
