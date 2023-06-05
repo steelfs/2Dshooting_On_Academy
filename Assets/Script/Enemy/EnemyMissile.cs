@@ -8,7 +8,8 @@ public class EnemyMissile : EnemyBase
 
     public override void OnInitialize()
     {
-        target = GameManager.Instance.Player.transform;
+
+        target = GameManager.Inst.Player.transform;
     }
 
     protected override void OnMoveUpdate()
@@ -16,9 +17,10 @@ public class EnemyMissile : EnemyBase
         base.OnMoveUpdate();
 
         Vector3 dir = target.position - transform.position;
-        transform.right = -Vector3.Lerp(-transform.right, dir, Time.deltaTime * 0.1f);
+  
+        transform.right = -Vector3.Lerp(-transform.right, dir, Time.deltaTime * 0.5f);
 
-        
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

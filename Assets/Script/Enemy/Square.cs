@@ -4,27 +4,33 @@ using UnityEngine;
 
 public class Square : MonoBehaviour
 {
-    public float speed = 5.0f;
-    Vector3 dir;
-    Vector3 targetPos;
-    float rangeX = 8.5f;
-    float rangeY = 4.5f;
+    public float speed = 2.0f;
+
+    public float rangeX = 7.5f;
+    public float rangeY = 3.5f;
+
+    float appearTime = 2.0f;
+
     private void Awake()
     {
-        dir = new Vector3(Random.Range(-rangeX, rangeX), Random.Range(-rangeY, rangeY), 0);
-        targetPos = dir - transform.position;
-        targetPos.Normalize();
+        
     }
-    void Update()
+    private void Start()
     {
-        transform.Translate(Time.deltaTime * speed * targetPos);
-        if (transform.position.x > rangeX || transform.position.x < -rangeX || transform.position.y > rangeY || transform.position.y < -rangeY)
-        {
-            ResetTargetPos();
-        }
+        StartCoroutine(AppearCoroutine());
     }
-    void ResetTargetPos()
+    private void Update()
     {
-        dir = new Vector3(Random.Range(-rangeX, rangeX), Random.Range(-rangeY, rangeY), 0);
+        transform.Translate(Time.deltaTime * speed * -Vector3.right);
+    }
+
+    IEnumerator AppearCoroutine()
+    {
+        Debug.Log("코루틴 시작");
+        yield return new WaitForSeconds(appearTime);
+    
+        speed = 0;
+        yield return new WaitForSeconds(appearTime);
+        speed = 2;
     }
 }

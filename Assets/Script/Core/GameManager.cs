@@ -9,7 +9,6 @@ public class GameManager : Singleton<GameManager>
 
     protected override void OnInitialize()
     {
-        base.OnInitialize();
         player = FindObjectOfType<Player>();
     }
 }

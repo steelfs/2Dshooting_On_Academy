@@ -38,7 +38,7 @@ public class EnemyBase : MonoBehaviour
     protected virtual void Awake()
     {
         hp = maxHp;
-        explosion = transform.GetChild(0).gameObject; //이펙트 찾아놓기
+        explosion = GetComponentInChildren<Explosion>(true).gameObject;
         
     }
     // Start is called before the first frame update

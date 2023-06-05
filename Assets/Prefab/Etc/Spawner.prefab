@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5338370789495159306
 Transform:
   m_ObjectHideFlags: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTarget:
-  - {fileID: 1242932154056022032, guid: 5a0acf412911b2345aea7acef4587bf1, type: 3}
+  - {fileID: 1841708652482900679, guid: ff0de1f0c76ce1e46961384eb6a8449c, type: 3}
   rangeY: 4
   rangeX: 0.5
-  interval: 10
+  interval: 100

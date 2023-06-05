@@ -8,7 +8,7 @@ public class Singleton<T> : MonoBehaviour where T : Component // where T : Compo
     // <> 안에는 반드시 컴포넌트만 넣어줘야한다.
     private static bool isShutDown = false;
     private static T instance;
-    public static T Instance
+    public static T Inst
     {
         get
         {
@@ -17,7 +17,7 @@ public class Singleton<T> : MonoBehaviour where T : Component // where T : Compo
                 Debug.LogWarning("싱글톤은 이미 삭제중이다.");// 경고메세지 출력
                 return null;
             }
-            if (Instance == null)
+            if (instance == null)
             {
                 //instance가 없으면 새로 만든다.
                 T singleTon = FindObjectOfType<T>();
@@ -53,7 +53,7 @@ public class Singleton<T> : MonoBehaviour where T : Component // where T : Compo
             }
         }
     }
-    public int testI = 0;
+ 
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnsceneLoaded;

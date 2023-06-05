@@ -70,7 +70,10 @@
     <Compile Include="Assets\Script\Effect\Explosion.cs" />
     <Compile Include="Assets\Action\PlayerInputAction.cs" />
     <Compile Include="Assets\Script\Enemy\Monster1.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyMissile.cs" />
     <Compile Include="Assets\Script\UI\TestSingleTon.cs" />
+    <Compile Include="Assets\Script\Enemy\Square.cs" />
+    <Compile Include="Assets\Script\Core\GameManager.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground.cs" />
     <Compile Include="Assets\Script\Enemy\TestEnemy.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyStrike.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Assets\Script\Item\PowerUpItem.cs" />
     <Compile Include="Assets\Script\Test\TestSingletonComponent.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground_Planet.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyBullet.cs" />
     <Compile Include="Assets\Script\Test\TestBase.cs" />
     <Compile Include="Assets\Action\EnemyInputAction.cs" />
     <Compile Include="Assets\Action\CapsuleMove.cs" />
@@ -93,10 +97,6 @@
     <Compile Include="Assets\Script\Item\ItemBase.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
     <Compile Include="Assets\Script\Enemy\MonsterCurve.cs" />
-    <Compile Include="Assets\Script\Enemy\Square.cs" />
-    <Compile Include="Assets\Script\Enemy\EnemyBullet.cs" />
-    <Compile Include="Assets\Script\Enemy\EnemyMissile.cs" />
-    <Compile Include="Assets\Script\Core\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

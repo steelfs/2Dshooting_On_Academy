@@ -7,9 +7,10 @@ public class MonsterCurve : EnemyBase
     [Header("Curve Enemy data")]
     float curveDir = -1.0f;
     public float rotateSpeed = 10.0f;
-
+ 
     public override void OnInitialize()
     {
+
         if (transform.position.y > 0)
         {
             curveDir = 1.0f; // 위에서 등장하면 아래로 커브, 우회전
