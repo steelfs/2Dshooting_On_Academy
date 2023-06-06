@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterCurve : EnemyBase
+public class EnemyCurve : EnemyBase
 {
     [Header("Curve Enemy data")]
-    float curveDir = -1.0f;
+    public float curveDir = -1.0f;
     public float rotateSpeed = 10.0f;
  
     public override void OnInitialize()
