@@ -20,9 +20,9 @@ public class EnemyBoss : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-        firePosition1 = transform.GetChild(0);
-        firePosition2 = transform.GetChild(1);
-        firePosition3 = transform.GetChild(2);
+        firePosition1 = transform.GetChild(1);
+        firePosition2 = transform.GetChild(2);
+        firePosition3 = transform.GetChild(3);
     }
     protected override void OnInitialize()
     {
@@ -100,10 +100,10 @@ public class EnemyBoss : EnemyBase
     {
         while (true)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
-            GameObject bullet2 = Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
+            Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
+            Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
 
-            GameObject bullet1 = Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet);
+            GameObject bullet1 = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet);
 
 
             yield return new WaitForSeconds(bulletInterval);

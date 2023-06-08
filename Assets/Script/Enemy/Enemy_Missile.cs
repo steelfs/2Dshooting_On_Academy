@@ -32,6 +32,9 @@ public class Enemy_Missile : EnemyBase
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        onGuided = false;
+        if (collision.CompareTag("Player"))
+        {
+            onGuided = false;
+        }        
     }
 }
