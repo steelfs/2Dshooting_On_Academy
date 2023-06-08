@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>(); // 태그가 Enemy 이기때문에 EnemyBase가 null이 아니다.
            // onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
 
-            Destroy(gameObject);
         }
+            Destroy(gameObject);
     }
 }

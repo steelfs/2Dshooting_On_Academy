@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Square : MonoBehaviour
 {
+    Transform target;
+    Vector3 dir;
+    bool isClose = false;
+
     public float speed = 2.0f;
 
     public float rangeX = 7.5f;
@@ -13,15 +17,24 @@ public class Square : MonoBehaviour
 
     private void Awake()
     {
-        
+        target = FindObjectOfType<Player>().transform;
     }
     private void Start()
     {
-        StartCoroutine(AppearCoroutine());
+       // StartCoroutine(AppearCoroutine());
     }
     private void Update()
     {
-        transform.Translate(Time.deltaTime * speed * -Vector3.right);
+        if (!isClose)
+        {
+            dir = (target.position - transform.position).normalized;
+            transform.Translate(Time.deltaTime * speed * dir);
+        }
+        else
+        {
+            transform.Translate(Time.deltaTime * speed * -Vector3.right);
+        }
+      
     }
 
     IEnumerator AppearCoroutine()
@@ -32,5 +45,9 @@ public class Square : MonoBehaviour
         speed = 0;
         yield return new WaitForSeconds(appearTime);
         speed = 2;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        isClose = true;
     }
 }

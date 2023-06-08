@@ -8,7 +8,7 @@ public class Enemy_Missile : EnemyBase
     Transform target;
     bool onGuided = true;
   
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
         target = GameManager.Inst.Player.transform;
         bool onGuided = true;

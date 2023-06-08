@@ -41,7 +41,10 @@ public class EnemyBase : MonoBehaviour
         explosion = GetComponentInChildren<Explosion>(true).gameObject;
         
     }
-    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        OnInitialize();
+    }
    
     void Update()
     {
@@ -59,9 +62,13 @@ public class EnemyBase : MonoBehaviour
             Hp--;            
         }
     }
-    public virtual void OnInitialize()
+    protected virtual void OnInitialize()
     {
-
+        if (GameManager.Inst.Player != null)
+        {
+            onDie += GameManager.Inst.Player.AddScore;
+        }
+       
     }
     protected virtual void Die()
     {

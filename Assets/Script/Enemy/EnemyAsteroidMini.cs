@@ -8,7 +8,7 @@ public class EnemyAsteroidMini : EnemyBase
     float baseRotateSpeed = 0.0f;
     float rotateSpeed = 0.0f;
     Vector3 direction;
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
         speed = baseSpeed + Random.Range(-1.0f, 1.0f); //이동속도
         rotateSpeed = Random.Range(0, 360); // 회전속도

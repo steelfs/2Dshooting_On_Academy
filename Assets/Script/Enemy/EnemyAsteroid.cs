@@ -21,8 +21,6 @@ public class EnemyAsteroid : EnemyBase
 
     public float rotateSpeed;
 
-    public GameObject childPrefab; //이 운석이 파괴될 때 생성할 자식용 프리팹
-
     [Range(0f, 1f)] // 인스펙터창에서 범위 내 설정 가능
     public float criticalRate = 0.95f; //확률로 폭발적으로 미니운석이 생성됨
 
@@ -62,8 +60,10 @@ public class EnemyAsteroid : EnemyBase
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + direction);
     }
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
+        base.OnInitialize();
+
         speed = Random.Range(minMoveSpeed,maxMoveSpeed);
         rotateSpeed = Random.Range(minRotateSpeed, maxRotateSpeed) ;
         StartCoroutine(SelfCrush());
@@ -84,37 +84,30 @@ public class EnemyAsteroid : EnemyBase
 
         // 1. 운석을 생성한다.  2. 생성될 갯수를 랜덤으로 바꾼다.  3. 로테이션을 사용해 회전각을 바꿔 진행방향을 바꾼다. 4. 회전각 / 생성된 횟수   를 나눠서 일정한 사이각을 정한다.
             
-        if (childPrefab != null)
+       
+        int count;
+
+        if (Random.value < criticalRate) //크리티컬이 터지면 20개 생성
         {
-            int count;
-
-            if (Random.value < criticalRate) //크리티컬이 터지면 20개 생성
-            {
-                count = 20;
-            }
-            else
-            {
-                count = Random.Range(3, 8);//일반적 상황 
-         
-            }
-
-            float angle = 360.0f / count;  //사이각 구하기
-
-            float startAngle = Random.Range(0, 360f); //시작각 구하기
-            for (int i = 0; i < count; i++)
-            {
-                GameObject obj = Instantiate(childPrefab); //갯수만큼 생성
-                obj.transform.position = transform.position; // 위치 옮기기
-                obj.transform.Rotate((startAngle * angle * i) * Vector3.forward);
-
-                EnemyBase enemy = obj.GetComponent<EnemyBase>();
-                enemy.OnInitialize(); // 자식 초기화
-            }
-    
+            count = 20;
         }
+        else
+        {
+            count = Random.Range(3, 8);//일반적 상황 
+         
+        }
+
+        float angle = 360.0f / count;  //사이각 구하기
+
+        float startAngle = Random.Range(0, 360f); //시작각 구하기
+        for (int i = 0; i < count; i++)
+        {
+
+            GameObject obj = Factory.Inst.GetObject(Pool_Object_Type.Enemy_Asteroid);
+            obj.transform.position = transform.position; // 위치 옮기기
+            obj.transform.Rotate((startAngle * angle * i) * Vector3.forward);
+        }       
         base.Die();
-
-
     }
 
     IEnumerator SelfCrush()

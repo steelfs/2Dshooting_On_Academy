@@ -10,7 +10,7 @@ public class EnemyStrike : EnemyBase
     public float waitTime = 5.0f;// 등장 후 대기시간
 
 
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
         StopAllCoroutines();
         StartCoroutine(AppearProcess());

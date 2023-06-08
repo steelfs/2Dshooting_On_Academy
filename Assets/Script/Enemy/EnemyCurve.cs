@@ -8,7 +8,7 @@ public class EnemyCurve : EnemyBase
     public float curveDir = -1.0f;
     public float rotateSpeed = 10.0f;
  
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
 
         if (transform.position.y > 0)

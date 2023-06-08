@@ -26,7 +26,7 @@ public class Singleton<T> : MonoBehaviour where T : Component // where T : Compo
 
                     GameObject gameObj = new GameObject();//빈 오브젝트 생성
                     gameObj.name = $"{typeof(T).Name} : SingleTon";             //이름수정
-                    gameObj.AddComponent<T>();// 싱글톤 컴포넌트 추가
+                    singleTon = gameObj.AddComponent<T>();// 싱글톤 컴포넌트 추가
 
                 }
                 instance = singleTon; //instance에 찾았거나 만들어진 객체 대입

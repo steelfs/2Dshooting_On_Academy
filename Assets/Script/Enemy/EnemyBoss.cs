@@ -24,7 +24,7 @@ public class EnemyBoss : EnemyBase
         firePosition2 = transform.GetChild(1);
         firePosition3 = transform.GetChild(2);
     }
-    public override void OnInitialize()
+    protected override void OnInitialize()
     {
   
         Vector3 newPos = transform.position;
@@ -102,6 +102,10 @@ public class EnemyBoss : EnemyBase
         {
             GameObject bullet = Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
             GameObject bullet2 = Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
+
+            GameObject bullet1 = Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet);
+
+
             yield return new WaitForSeconds(bulletInterval);
         }
        
@@ -110,10 +114,9 @@ public class EnemyBoss : EnemyBase
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject missile = Instantiate(missilePrefab, firePosition3.position, Quaternion.identity);
-            EnemyBase enemy = missile.GetComponent<EnemyBase>();
-            enemy.OnInitialize();
-            yield return new WaitForSeconds(bulletInterval);
+            GameObject obj = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossMissile);
+            obj.transform.position = firePosition3.position;
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

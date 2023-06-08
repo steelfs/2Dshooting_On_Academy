@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Enemy\EnemyAsteroidMini.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyForTest.cs" />
+    <Compile Include="Assets\Script\Core\Test_Factory.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Script\Test\Test_Delegate.cs" />
     <Compile Include="Assets\Script\Core\SingleTon.cs" />
     <Compile Include="Assets\Script\Effect\BulletExplosion.cs" />
-    <Compile Include="Assets\Script\Enemy\SpawnerAsteroid.cs" />
     <Compile Include="Assets\Script\Enemy\Spawner.cs" />
+    <Compile Include="Assets\Script\Enemy\OldSpawner.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBoss.cs" />
     <Compile Include="Assets\Script\Test\TestSpawner.cs" />
     <Compile Include="Assets\Script\Enemy\Monster2.cs" />
@@ -96,7 +97,10 @@
     <Compile Include="Assets\Script\Enemy\EnemyAsteroid.cs" />
     <Compile Include="Assets\Script\Item\ItemBase.cs" />
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
+    <Compile Include="Assets\Script\Core\Factory.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCurve.cs" />
+    <Compile Include="Assets\Script\Core\Second_Test_Factory.cs" />
+    <Compile Include="Assets\Script\Core\SecondFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

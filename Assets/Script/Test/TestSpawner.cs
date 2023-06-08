@@ -8,8 +8,6 @@ public class TestSpawner : TestBase
     public Spawner spawner;
     protected override void Test1(InputAction.CallbackContext context)
     {
-       spawner.TestSpawn();
-        Debug.Log("TestSpawner");
 
     }
 
@@ -17,14 +15,7 @@ public class TestSpawner : TestBase
     {
 
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 }
