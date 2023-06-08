@@ -1,29 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy_Missile : EnemyBase
 {
     Transform target;
-
-    bool isClose = false;
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Die();
-        }
-    }
+    bool onGuided = true;
+  
     public override void OnInitialize()
     {
         target = GameManager.Inst.Player.transform;
+        bool onGuided = true;
     }
     protected override void OnMoveUpdate()
     {
         base.OnMoveUpdate();
-        Vector3 dir = target.position - transform.position;
+        if (onGuided)
+        {
+            Vector3 dir = target.position - transform.position;
 
-        transform.right = -Vector3.Lerp(-transform.right, dir, Time.deltaTime * 0.5f);
+            transform.right = -Vector3.Lerp(-transform.right, dir, Time.deltaTime * 0.5f);
+        }       
     }
-
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
+        {
+            Die();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        onGuided = false;
+    }
 }

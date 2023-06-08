@@ -8,10 +8,22 @@ public class EnemyBoss : EnemyBase
     public Vector2 areaMin = new Vector2(2, -3); //활동영역  min~ max
     public Vector2 areaMax = new Vector2(7, 3);
 
+    public GameObject bulletPrefab; // 일반총알
+    public GameObject missilePrefab;// 추적미사일
+    public float bulletInterval = 1.0f;
+    Transform firePosition1;
+    Transform firePosition2;
+    Transform firePosition3;
     Vector3 targetPos;
     Vector3 moveDirection;
 
-
+    protected override void Awake()
+    {
+        base.Awake();
+        firePosition1 = transform.GetChild(0);
+        firePosition2 = transform.GetChild(1);
+        firePosition3 = transform.GetChild(2);
+    }
     public override void OnInitialize()
     {
   
@@ -38,7 +50,7 @@ public class EnemyBoss : EnemyBase
                        
             yield return null;
         }
-
+        StartCoroutine(BulletFire());
         speed = oldSpeed;
         SetNextTargetPos();
     }
@@ -61,6 +73,7 @@ public class EnemyBoss : EnemyBase
         {
             SetNextTargetPos();
         }
+       
     }
 
     void SetNextTargetPos()//targetPos 리셋
@@ -77,8 +90,30 @@ public class EnemyBoss : EnemyBase
         {
             y = areaMax.y;
         }
+        StartCoroutine(MissileFire());
         targetPos = new Vector3(x, y);
         moveDirection = targetPos - transform.position;
         moveDirection.Normalize();// 속도를 일정하게 하기 위해 방향만 남겨놓고 길이를 1로 남겨놓는다. 정규화
+    }
+
+    IEnumerator BulletFire()
+    {
+        while (true)
+        {
+            GameObject bullet = Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
+            GameObject bullet2 = Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
+            yield return new WaitForSeconds(bulletInterval);
+        }
+       
+    }
+    IEnumerator MissileFire()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject missile = Instantiate(missilePrefab, firePosition3.position, Quaternion.identity);
+            EnemyBase enemy = missile.GetComponent<EnemyBase>();
+            enemy.OnInitialize();
+            yield return new WaitForSeconds(bulletInterval);
+        }
     }
 }
