@@ -18,10 +18,12 @@ public enum Pool_Object_Type
 public class Factory : Singleton<Factory>
 {
     //public GameObject PlayerBullet;
+    //public GameObject BossBullet;
     BulletPool bulletPool;
+    BossPool bossPool;
+    BossMissilePool bossMissilePool;
 
-    public GameObject Boss;
-    public GameObject BossBullet;
+ 
     public GameObject BossMissile;
     public GameObject Asteroid;
     public GameObject Asteroid_Mini;
@@ -32,10 +34,11 @@ public class Factory : Singleton<Factory>
     protected override void OnInitialize()
     {
         base.OnInitialize();
-
         bulletPool = GetComponentInChildren<BulletPool>();
-
         bulletPool?.Initialize();
+        bossPool = GetComponentInChildren<BossPool>();
+        bossPool?.Initialize();
+
     }
     public GameObject GetObject(Pool_Object_Type type)
     {
@@ -46,10 +49,10 @@ public class Factory : Singleton<Factory>
                 result = bulletPool.GetObject()?.gameObject;
                 break;
             case Pool_Object_Type.Enemy_Boss:
-                result = Instantiate(Boss);
+                result = bossPool?.GetObject()?.gameObject;
                 break;
             case Pool_Object_Type.Enemy_BossBullet:
-                result = Instantiate(BossBullet);
+                result = bossMissilePool?.GetObject()?.gameObject;
                 break;
             case Pool_Object_Type.Enemy_BossMissile:
                 result = Instantiate(BossMissile);

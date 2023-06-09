@@ -100,10 +100,12 @@ public class EnemyBoss : EnemyBase
     {
         while (true)
         {
-            Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
-            Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
-
+            //Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
+            //Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
             GameObject bullet1 = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet);
+            bullet1.transform.position = firePosition1.position;
+            GameObject bullet2 = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet);
+            bullet2.transform.position = firePosition2.position;
 
 
             yield return new WaitForSeconds(bulletInterval);

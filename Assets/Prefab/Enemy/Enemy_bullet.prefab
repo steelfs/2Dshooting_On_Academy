@@ -117,8 +117,8 @@ GameObject:
   - component: {fileID: 2982483587561915846}
   - component: {fileID: 2982483587561915849}
   - component: {fileID: 2982483587561915848}
-  - component: {fileID: 2982483587561915847}
   - component: {fileID: 6048814984939636797}
+  - component: {fileID: 5102137266275972082}
   m_Layer: 8
   m_Name: Enemy_bullet
   m_TagString: Enemy
@@ -216,23 +216,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2982483587561915847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982483587561915850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4249076d588ea44b35db752548bd06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  waitTimeX: 1
-  score: 10
-  maxHp: 1
-  hp: 1
 --- !u!58 &6048814984939636797
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -249,6 +232,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.42666668
+--- !u!114 &5102137266275972082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982483587561915850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2d60a28f6564f4d82fd91913ead580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hit_Explosion: {fileID: 0}
+  speed: 7
+  lifeTime: 10
 --- !u!1001 &2982483586340738057
 PrefabInstance:
   m_ObjectHideFlags: 0

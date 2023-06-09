@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyBase : PooledObject
 {
     [Header("Base data")]
 
@@ -41,11 +41,20 @@ public class EnemyBase : MonoBehaviour
         explosion = GetComponentInChildren<Explosion>(true).gameObject;
         
     }
-    protected virtual void Start()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         OnInitialize();
     }
-   
+
+    protected override void OnDisable()
+    {
+        if (GameManager.Inst.Player != null)
+        {
+            onDie -= GameManager.Inst.Player.AddScore;
+        }
+        base.OnDisable();
+    }
     void Update()
     {
         OnMoveUpdate(); //각 클래스별 이동 업데이트 함수 실행
@@ -78,7 +87,7 @@ public class EnemyBase : MonoBehaviour
         explosion.SetActive(true);
 
         onDie?.Invoke(score);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
         //디자인 패턴은 코딩의 정석
 

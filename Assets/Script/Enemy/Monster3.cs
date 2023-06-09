@@ -13,9 +13,9 @@ public class Monster3 : EnemyBase
     {
         base.Awake();       
     }
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         targetPosition = new Vector3(Random.Range(-2.0f, 4.0f), Random.Range(4.5f, -4.5f), 0);
     }
     protected override void Die()

@@ -82,7 +82,6 @@
     <Compile Include="Assets\Script\Item\PowerUpItem.cs" />
     <Compile Include="Assets\Script\Test\TestSingletonComponent.cs" />
     <Compile Include="Assets\Script\Etc\Back_Ground_Planet.cs" />
-    <Compile Include="Assets\Script\Enemy\Enemy_Bullet.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBullet.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy_Missile.cs" />
     <Compile Include="Assets\Script\Test\TestBase.cs" />
@@ -104,6 +103,10 @@
     <Compile Include="Assets\Script\Pool\PooledObject.cs" />
     <Compile Include="Assets\Script\Pool\ObjectPool.cs" />
     <Compile Include="Assets\Script\Pool\Pools\BulletPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\BossPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\Test_ObjectPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\BossBulletPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\BossMissilePool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -9,10 +9,11 @@ public class EnemyFighter : EnemyBase
     public float frequency = 2.0f; //사인그래프가 한번 왕복하는데 걸리는 시간
     public float spawnY;// 시작할때 높이
     float timeElapsed = 0.0f;//시작부터 경과시간
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         spawnY = transform.position.y;
+        StopAllCoroutines();
         StartCoroutine(WaitCoroutine());
     }
 
