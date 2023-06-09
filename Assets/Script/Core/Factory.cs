@@ -17,7 +17,9 @@ public enum Pool_Object_Type
 
 public class Factory : Singleton<Factory>
 {
-    public GameObject PlayerBullet;
+    //public GameObject PlayerBullet;
+    BulletPool bulletPool;
+
     public GameObject Boss;
     public GameObject BossBullet;
     public GameObject BossMissile;
@@ -26,13 +28,22 @@ public class Factory : Singleton<Factory>
     public GameObject Fighter;
     public GameObject Curve;
     public GameObject Strike;
+
+    protected override void OnInitialize()
+    {
+        base.OnInitialize();
+
+        bulletPool = GetComponentInChildren<BulletPool>();
+
+        bulletPool?.Initialize();
+    }
     public GameObject GetObject(Pool_Object_Type type)
     {
         GameObject result;
         switch (type)
         {
             case Pool_Object_Type.Player_Bullet:
-                result = Instantiate(PlayerBullet);
+                result = bulletPool.GetObject()?.gameObject;
                 break;
             case Pool_Object_Type.Enemy_Boss:
                 result = Instantiate(Boss);

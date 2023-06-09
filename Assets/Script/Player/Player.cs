@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            GameObject newbullet = Instantiate(bullet);
+            GameObject newbullet = Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet);
             newbullet.transform.position = fireTransform.position;
 
            // Bullet bulletComp = newbullet.GetComponent<Bullet>();

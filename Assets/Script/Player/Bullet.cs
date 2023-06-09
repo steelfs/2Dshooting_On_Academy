@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Bullet : MonoBehaviour
+public class Bullet : PooledObject
 {
     public GameObject Hit_Explosion;
     public float speed = 9.0f;
@@ -17,9 +17,13 @@ public class Bullet : MonoBehaviour
     {
         Hit_Explosion = transform.GetChild(0).gameObject;
     }
-    private void Start()
+
+    protected override void OnEnable()
     {
-        Destroy(gameObject, lifeTime); //lifeTime 초 후 오브젝트 삭제, 모든 투사체는 수명주기를 정해주는 것이 좋다
+        base.OnEnable();
+        StopAllCoroutines(); //코루틴이 완전히 끝나지않앗을 때 비활성화됐을경우
+        StartCoroutine(LifeOver(lifeTime));
+       // Destroy(gameObject, lifeTime); //lifeTime 초 후 오브젝트 삭제, 모든 투사체는 수명주기를 정해주는 것이 좋다
     }
     void Update()
     {
@@ -38,6 +42,6 @@ public class Bullet : MonoBehaviour
            // onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
 
         }
-            Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 }

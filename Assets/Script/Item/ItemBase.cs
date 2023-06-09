@@ -5,7 +5,6 @@ using UnityEngine;
 public class ItemBase : MonoBehaviour
 {
     public float speed = 3.0f;
-    bool isReset = false;
     float rangeX = 8.5f;
     float rangeY = 4.5f;
     Vector3 direction;

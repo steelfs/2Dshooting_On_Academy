@@ -11,7 +11,7 @@ public class Enemy_Missile : EnemyBase
     protected override void OnInitialize()
     {
         target = GameManager.Inst.Player.transform;
-        bool onGuided = true;
+        onGuided = true;
     }
     protected override void OnMoveUpdate()
     {
