@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class ObjectPool<T> : MonoBehaviour where T : PooledObject
 {
-    /// <summary>
-    /// 풀에 담아놓을 오브젝트프리
-    /// </summary>
     public GameObject originalPrefab;
 
-    public int poolSize = 64;// 풀의 크기 처음생성하는 오브젝트의 갯수 2^n 으로 잡는것이 좋다.
-
-
-    T[] pool;// 풀이 생성한 오브젝트의 배열
-    Queue<T> readyQueue; // 사용가능한 (비활성화되어있는 )오브젝트들이 들어있는 큐
+    public int poolSize = 64;
+    T[] pool;
+    Queue<T> readyQueue; 
 
     public void Initialize()
     {
         if (pool == null)
         {
-            pool = new T[poolSize]; // 풀 전체크기로 배열 할당 
-            readyQueue = new Queue<T>(poolSize);// 큐 생성 (Capacity는 poolSize만큼 생성 )
+            pool = new T[poolSize];
+            readyQueue = new Queue<T>(poolSize);
 
             //readyQueue.Count; //실제로 들어있는 갯수 
             //readyQueue.Capacity // 현재 미리 준비해둔 갯수 
@@ -88,6 +83,7 @@ public class ObjectPool<T> : MonoBehaviour where T : PooledObject
 
             newArray[i] = comp; // 배열에 저장하고 
             obj.SetActive(false);//비활성화 시키기 비활성화될때 위에서 추가한 람다식이 실행되면서 큐로 다시 돌아가게된다.
+            
         }
     }
 }

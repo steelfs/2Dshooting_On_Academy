@@ -10,7 +10,7 @@ public class EnemyBullet : EnemyBase
 
     protected override void Awake()
     {
-        Hit_Explosion = transform.GetChild(0).gameObject;
+        Hit_Explosion = GetComponentInChildren<Explosion>(true).gameObject;
     }
     protected override void OnEnable()
     {
@@ -23,15 +23,14 @@ public class EnemyBullet : EnemyBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Hit_Explosion.transform.SetParent(null); //이펙트의 부모 제거
+
+            Hit_Explosion.transform.SetParent(null); //이펙트의 부모 제거
             Hit_Explosion.transform.position = collision.contacts[0].point; //충돌지점으로 이펙트 위치 옮기기
             Hit_Explosion.transform.Rotate(0, 0, UnityEngine.Random.Range(0, 360.0f));
             Hit_Explosion.SetActive(true);
 
-            EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
-
             gameObject.SetActive(false);
-            Hit_Explosion.SetActive(false);
+            //  Hit_Explosion.SetActive(false);
         }
     }
 }

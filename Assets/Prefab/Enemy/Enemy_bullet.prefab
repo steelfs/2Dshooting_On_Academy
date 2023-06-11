@@ -244,8 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2d60a28f6564f4d82fd91913ead580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hit_Explosion: {fileID: 0}
   speed: 7
+  waitTimeX: 1
+  score: 10
+  maxHp: 1
+  hp: 1
+  Hit_Explosion: {fileID: 0}
   lifeTime: 10
 --- !u!1001 &2982483586340738057
 PrefabInstance:

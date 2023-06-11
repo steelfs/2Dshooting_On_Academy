@@ -13,17 +13,13 @@ public class Bullet : PooledObject
     //OnEnemyKill onEnemyKill;
     //public Action<int> onEnemyKill; //적을 Kill했을 때 신호를 보내는 delegate
 
-    private void Awake()
-    {
-        Hit_Explosion = transform.GetChild(0).gameObject;
-    }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        StopAllCoroutines(); //코루틴이 완전히 끝나지않앗을 때 비활성화됐을경우
+        Hit_Explosion = transform.GetChild(0).gameObject;  ///질문사항   스크립트에서 getChild로 찾는것과  public GameObject로 인스펙터에서 할당하는것이랑 성능적인 측면에서 차이가 있는가
+        StopAllCoroutines(); 
         StartCoroutine(LifeOver(lifeTime));
-       // Destroy(gameObject, lifeTime); //lifeTime 초 후 오브젝트 삭제, 모든 투사체는 수명주기를 정해주는 것이 좋다
     }
     void Update()
     {
@@ -40,8 +36,8 @@ public class Bullet : PooledObject
 
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>(); // 태그가 Enemy 이기때문에 EnemyBase가 null이 아니다.
            // onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
+            gameObject.SetActive(false);
 
         }
-            gameObject.SetActive(false);
     }
 }

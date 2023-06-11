@@ -12,7 +12,7 @@ public class Hit_Effect : MonoBehaviour
     }
     void Start()
     {
-        Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length) ; //현재 에니메이터의 첫번째 클립의 길이 후에 삭제해라
+        Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length ) ; //현재 에니메이터의 첫번째 클립의 길이 후에 삭제해라
 
     }
 

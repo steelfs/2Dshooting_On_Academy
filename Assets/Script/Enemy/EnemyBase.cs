@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyBase : PooledObject
 {
     [Header("Base data")]
-
     public float speed = 3.0f;
     public float waitTimeX = 1.0f;  
+
     GameObject explosion;
 
     //[SerializeField]
@@ -49,7 +49,7 @@ public class EnemyBase : PooledObject
 
     protected override void OnDisable()
     {
-        if (GameManager.Inst.Player != null)
+        if (GameManager.Inst?.Player != null)
         {
             onDie -= GameManager.Inst.Player.AddScore;
         }

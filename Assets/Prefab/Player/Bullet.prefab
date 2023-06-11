@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c41fa00bf9f95d49b418ce6bc2d79df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hit_Explosion: {fileID: 0}
+  Hit_Explosion: {fileID: 3804028678766356034, guid: 3419156ce4838b24285b551d89a0e9f0, type: 3}
   speed: 9
   lifeTime: 10
 --- !u!50 &7945964912872171452
