@@ -49,10 +49,7 @@ public class EnemyBase : PooledObject
 
     protected override void OnDisable()
     {
-        if (GameManager.Inst?.Player != null)
-        {
-            onDie -= GameManager.Inst.Player.AddScore;
-        }
+   
         base.OnDisable();
     }
     void Update()
@@ -87,22 +84,14 @@ public class EnemyBase : PooledObject
         explosion.SetActive(true);
 
         onDie?.Invoke(score);
+        if (GameManager.Inst?.Player != null)
+        {
+            onDie -= GameManager.Inst.Player.AddScore;
+        }
         gameObject.SetActive(false);
 
-        //디자인 패턴은 코딩의 정석
 
-        //HP maxHp 추가
-        //Hp가 0이되면 파괴
-        //운석은 HP가 3, 적 비행기는 HP 2
-
-        //EnemyBase에서 공통변수 hp, maxHp 프로퍼티로 만들고 oncollisionEnter를 virtual로 만든다. 그 안에 bullet테그와 충돌할때 마다 Hp를 1씩 깍고 hp가 0보다 같거나 작아지면 
-        //Die 함수 실행
-
-        //생성시 override initialize에서 독립된 Hp 설정
-        //override OnCollisionEnter에서  Base.OncollisionEnter 실행
-
-
-        //플레이어가 화면밖을 벗어나지 못하게 하기
+ 
 
 
     }
