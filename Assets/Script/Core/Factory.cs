@@ -35,6 +35,9 @@ public class Factory : Singleton<Factory>
     EnemyFighterPool enemyFighterPool;
     EnemyCurvePool enemyCurvePool;
     EnemyStrikePool enemyStrikePool;
+    Monster1Pool monster1Pool;
+    Monster2Pool monster2Pool;
+    Monster3Pool monster3Pool;
 
 
     protected override void OnInitialize()
@@ -51,6 +54,9 @@ public class Factory : Singleton<Factory>
         enemyFighterPool = GetComponentInChildren<EnemyFighterPool>();
         enemyCurvePool = GetComponentInChildren<EnemyCurvePool>();
         enemyStrikePool = GetComponentInChildren<EnemyStrikePool>();
+        monster1Pool = GetComponentInChildren<Monster1Pool>();
+        monster2Pool = GetComponentInChildren<Monster2Pool>();
+        monster3Pool = GetComponentInChildren<Monster3Pool>();
 
         bulletPool?.Initialize();
         bossPool?.Initialize();
@@ -63,6 +69,10 @@ public class Factory : Singleton<Factory>
         enemyFighterPool?.Initialize();
         enemyCurvePool?.Initialize();
         enemyStrikePool?.Initialize();
+        monster1Pool?.Initialize();
+        monster2Pool?.Initialize();
+        monster3Pool?.Initialize();
+
 
     }
     public GameObject GetObject(Pool_Object_Type type)
@@ -74,7 +84,7 @@ public class Factory : Singleton<Factory>
                 result = bulletPool.GetObject()?.gameObject;
                 break;
             case Pool_Object_Type.PLayer_hit :
-                result = bulletPool.GetObject()?.gameObject;
+                result = hitPool?.GetObject()?.gameObject;
                  break;
             case Pool_Object_Type.Enemy_Boss:
                 result = bossPool?.GetObject()?.gameObject;
@@ -103,7 +113,17 @@ public class Factory : Singleton<Factory>
             case Pool_Object_Type.Enemy_Curve:
                 result = enemyCurvePool?.GetObject()?.gameObject;
                 break;
-                
+            case Pool_Object_Type.Monster1:
+                result = monster1Pool?.GetObject()?.gameObject;
+                break;
+            case Pool_Object_Type.Monster2:
+                result = monster2Pool?.GetObject()?.gameObject;
+                break;
+
+
+            case Pool_Object_Type.Monster3:
+                result = monster3Pool?.GetObject()?.gameObject;
+                break;
             default:
                 result = new GameObject();
                 break;

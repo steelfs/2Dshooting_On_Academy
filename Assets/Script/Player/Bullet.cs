@@ -26,10 +26,8 @@ public class Bullet : PooledObject
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-  
-
-        Factory.Inst.GetObject(Pool_Object_Type.PLayer_hit, collision.contacts[0].point);
-    
+        Factory.Inst.GetObject(Pool_Object_Type.PLayer_hit, collision.contacts[0].point, UnityEngine.Random.Range(0, 360.0f));
+        Debug.Log("콜리전");
         gameObject.SetActive(false);
         //hitExplosion.SetActive(true);
         //hitExplosion.transform.position = collision.contacts[0].point; //충돌지점으로 이펙트 위치 옮기기

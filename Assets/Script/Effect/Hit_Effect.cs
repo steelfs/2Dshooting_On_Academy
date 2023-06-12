@@ -10,10 +10,11 @@ public class Hit_Effect : PooledObject
     {
         animator = GetComponent<Animator>();
     }
-    void Start()
+    protected override void OnEnable()
     {
-        Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length ) ; //현재 에니메이터의 첫번째 클립의 길이 후에 삭제해라
-
+        base.OnEnable();
+        StartCoroutine(LifeOver(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length));
     }
+
 
 }

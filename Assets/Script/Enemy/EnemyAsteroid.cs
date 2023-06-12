@@ -38,7 +38,7 @@ public class EnemyAsteroid : EnemyBase
             {
                 destination = value;
                 direction = (destination.Value - transform.position).normalized; //백터크기를 1로 세팅해준다.
-                Debug.Log(destination);
+  
             }
         }
     }

@@ -70,13 +70,11 @@ public class EnemyBoss : EnemyBase
         {
             SetNextTargetPos();
             StartCoroutine(MissileFire());
-            Debug.Log("transform.position.y > areaMax.y");
         }
         else if (transform.position.y < areaMin.y)
         {
             SetNextTargetPos();
             StartCoroutine(MissileFire());
-            Debug.Log("transform.position.y < areaMax.y");
         }
        
     }
