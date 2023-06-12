@@ -50,8 +50,11 @@ public class EnemyBase : PooledObject
     }
 
     protected override void OnDisable()
-    {
-   
+    {         
+        if (GameManager.Inst?.Player != null)
+        {
+            onDie -= GameManager.Inst.Player.AddScore;
+        }
         base.OnDisable();
     }
     void Update()
@@ -90,11 +93,7 @@ public class EnemyBase : PooledObject
         explosion.SetActive(true);
 
         onDie?.Invoke(score);
-        //if (GameManager.Inst?.Player != null)
-        //{
-        //    onDie -= GameManager.Inst.Player.AddScore;
-        //}
-
+       
         gameObject.SetActive(false);
     }
 }
