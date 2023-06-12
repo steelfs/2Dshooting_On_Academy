@@ -16,7 +16,9 @@ public class EnemyBase : PooledObject
     public int Score => score;
 
     public int maxHp = 1;
-    public int hp = 1;   
+    public int hp = 1;
+
+    Player targetPlayer = null;
 
     public int Hp
     {
@@ -70,6 +72,10 @@ public class EnemyBase : PooledObject
     }
     protected virtual void OnInitialize()
     {
+        if (targetPlayer == null)
+        {
+            targetPlayer = GameManager.Inst.Player;
+        }
         if (GameManager.Inst.Player != null)
         {
             onDie += GameManager.Inst.Player.AddScore;
@@ -84,12 +90,12 @@ public class EnemyBase : PooledObject
         explosion.SetActive(true);
 
         onDie?.Invoke(score);
-        if (GameManager.Inst?.Player != null)
-        {
-            onDie -= GameManager.Inst.Player.AddScore;
-        }
+        //if (GameManager.Inst?.Player != null)
+        //{
+        //    onDie -= GameManager.Inst.Player.AddScore;
+        //}
 
         gameObject.SetActive(false);
     }
 }
-
+///CallStack 디버그창에서 멘마지막부분이 먼저 실행된 것이다.

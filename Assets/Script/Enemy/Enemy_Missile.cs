@@ -10,6 +10,7 @@ public class Enemy_Missile : EnemyBase
   
     protected override void OnInitialize()
     {
+        base.OnInitialize();
         target = GameManager.Inst.Player.transform;
         onGuided = true;
     }
