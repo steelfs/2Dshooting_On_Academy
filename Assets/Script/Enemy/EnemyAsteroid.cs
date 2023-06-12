@@ -97,15 +97,17 @@ public class EnemyAsteroid : EnemyBase
          
         }
 
+        count = 3;
+
         float angle = 360.0f / count;  //사이각 구하기
 
         float startAngle = Random.Range(0, 360f); //시작각 구하기
         for (int i = 0; i < count; i++)
         {
-
-            GameObject obj = Factory.Inst.GetObject(Pool_Object_Type.Enemy_Asteroid);
-            obj.transform.position = transform.position; // 위치 옮기기
-            obj.transform.Rotate((startAngle * angle * i) * Vector3.forward);
+            Factory.Inst.GetAsteroidMini(transform.position, angle);
+            //GameObject obj = Factory.Inst.GetObject(Pool_Object_Type.Enemy_Asteroid_Mini);
+            //obj.transform.position = transform.position; // 위치 옮기기
+            //obj.transform.Rotate((startAngle * angle * i) * Vector3.forward);
         }       
         base.Die();
     }

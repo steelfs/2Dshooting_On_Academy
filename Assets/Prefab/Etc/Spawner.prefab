@@ -45,10 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7140e6e1ebfe84ba40f33412e1c0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTarget: {fileID: 1267070321503224936, guid: b934543cd195eae47ad92d1a158ff8c8, type: 3}
+  spawnDatas:
+  - spawnType: 4
+    interval: 0
+  - spawnType: 3
+    interval: 0
   rangeY: 4
   rangeX: 0.5
-  interval: 2
 --- !u!1 &8473550397494104578
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,13 +22,13 @@ public class EnemyBoss : EnemyBase
     protected override void Awake()
     {
         base.Awake();
-        firePosition1 = transform.GetChild(1);
-        firePosition2 = transform.GetChild(2);
-        firePosition3 = transform.GetChild(3);
+        firePosition1 = transform.GetChild(0);
+        firePosition2 = transform.GetChild(1);
+        firePosition3 = transform.GetChild(2);
     }
     protected override void OnInitialize()
     {
-        Debug.Log("이니셜라이즈");
+        base.OnInitialize();
         Vector3 newPos = transform.position;
         newPos.y = 0.0f;
         transform.position = newPos; // y위치 0 
@@ -53,12 +53,11 @@ public class EnemyBoss : EnemyBase
             yield return null;
         }
         currentSpeed = speed; //oldspeed가 적용되지 않는 이유 :  stop 된 시점이 이미 speed가 이미 0이기 때문에 oldSpeed가 의미가 없다
-        StartCoroutine(BulletFire());
         SetNextTargetPos();
+        StartCoroutine(BulletFire());
     }
     protected override void OnMoveUpdate()
     {
-        Debug.Log("온무브업데이트");
         transform.Translate(Time.deltaTime * currentSpeed * moveDirection);
         //if (targetPos == transform.position) //최악의 코드 float 이기 대문에 같은걸 판단하기 힘듦
 
@@ -70,17 +69,20 @@ public class EnemyBoss : EnemyBase
         if (transform.position.y > areaMax.y) // 위 코드는 vector의 값을 모두 계산해야하지만 아래 if문은 Y값만 계산을 하기 때문에 연산량이 훨씬 적다
         {
             SetNextTargetPos();
+            StartCoroutine(MissileFire());
+            Debug.Log("transform.position.y > areaMax.y");
         }
         else if (transform.position.y < areaMin.y)
         {
             SetNextTargetPos();
+            StartCoroutine(MissileFire());
+            Debug.Log("transform.position.y < areaMax.y");
         }
        
     }
 
     void SetNextTargetPos()//targetPos 리셋
     {
-        Debug.Log("셋타겟포지션");
         float x;
         float y;
 
@@ -93,7 +95,7 @@ public class EnemyBoss : EnemyBase
         {
             y = areaMax.y;
         }
-        StartCoroutine(MissileFire());
+       
         targetPos = new Vector3(x, y);
         moveDirection = targetPos - transform.position;
         moveDirection.Normalize();// 속도를 일정하게 하기 위해 방향만 남겨놓고 길이를 1로 남겨놓는다. 정규화
@@ -105,13 +107,9 @@ public class EnemyBoss : EnemyBase
         {
             //Instantiate(bulletPrefab, firePosition1.position, Quaternion.identity);
             //Instantiate(bulletPrefab, firePosition2.position, Quaternion.identity);
-            GameObject bullet1 = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet);
-            bullet1.transform.position = firePosition1.position;
-            GameObject bullet2 = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet);
-            bullet2.transform.position = firePosition2.position;
-
-
-            yield return new WaitForSeconds(bulletInterval);
+             Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet,firePosition1.transform.position);
+             Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossBullet,firePosition2.transform.position);
+             yield return new WaitForSeconds(bulletInterval);
         }
        
     }
@@ -119,8 +117,8 @@ public class EnemyBoss : EnemyBase
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject obj = Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossMissile);
-            obj.transform.position = firePosition3.position;
+            Factory.Inst.GetObject(Pool_Object_Type.Enemy_BossMissile,firePosition3.position);
+ 
             yield return new WaitForSeconds(0.2f);
         }
     }

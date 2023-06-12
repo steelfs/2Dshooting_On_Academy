@@ -9,8 +9,6 @@ public class EnemyBase : PooledObject
     public float speed = 3.0f;
     public float waitTimeX = 1.0f;  
 
-    GameObject explosion;
-
     //[SerializeField]
     public int score = 10; //적이 주는 점수
     public int Score => score;
@@ -40,7 +38,6 @@ public class EnemyBase : PooledObject
     protected virtual void Awake()
     {
         hp = maxHp;
-        explosion = GetComponentInChildren<Explosion>(true).gameObject;
         
     }
     protected override void OnEnable()
@@ -51,9 +48,9 @@ public class EnemyBase : PooledObject
 
     protected override void OnDisable()
     {         
-        if (GameManager.Inst?.Player != null)
+        if (targetPlayer != null)
         {
-            onDie -= GameManager.Inst.Player.AddScore;
+            onDie -= targetPlayer.AddScore;
         }
         base.OnDisable();
     }
@@ -79,18 +76,19 @@ public class EnemyBase : PooledObject
         {
             targetPlayer = GameManager.Inst.Player;
         }
-        if (GameManager.Inst.Player != null)
+        if (targetPlayer != null)
         {
-            onDie += GameManager.Inst.Player.AddScore;
+            onDie += targetPlayer.AddScore;
         }
        
     }
     protected virtual void Die()
     {
-        explosion.transform.SetParent(null);//부모 오브젝트와 같이 destroy되는것을 방지
+        GameObject explosionEffect = Factory.Inst.GetObject(Pool_Object_Type.Enemy_Explosion);
+        explosionEffect.transform.position = transform.position;
         //explosion.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0.0f, 360));
-        explosion.transform.Rotate(0,0,UnityEngine. Random.Range(0, 360.0f));
-        explosion.SetActive(true);
+        explosionEffect.transform.Rotate(0,0,UnityEngine. Random.Range(0, 360.0f));
+        explosionEffect.SetActive(true);
 
         onDie?.Invoke(score);
        

@@ -4,8 +4,7 @@ using UnityEngine;
 using System;
 
 public class Bullet : PooledObject
-{
-    public GameObject Hit_Explosion;
+{  
     public float speed = 9.0f;
     public float lifeTime = 10.0f;
 
@@ -17,7 +16,7 @@ public class Bullet : PooledObject
     protected override void OnEnable()
     {
         base.OnEnable();
-        Hit_Explosion = transform.GetChild(0).gameObject;  ///질문사항   스크립트에서 getChild로 찾는것과  public GameObject로 인스펙터에서 할당하는것이랑 성능적인 측면에서 차이가 있는가
+        ///질문사항   스크립트에서 getChild로 찾는것과  public GameObject로 인스펙터에서 할당하는것이랑 성능적인 측면에서 차이가 있는가
         StopAllCoroutines(); 
         StartCoroutine(LifeOver(lifeTime));
     }
@@ -27,17 +26,19 @@ public class Bullet : PooledObject
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Hit_Explosion.transform.SetParent(null); //이펙트의 부모 제거
-            Hit_Explosion.transform.position = collision.contacts[0].point; //충돌지점으로 이펙트 위치 옮기기
-            Hit_Explosion.transform.Rotate(0, 0, UnityEngine.Random.Range(0, 360.0f));
-            Hit_Explosion.SetActive(true);
+  
 
-            EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>(); // 태그가 Enemy 이기때문에 EnemyBase가 null이 아니다.
-           // onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
-            gameObject.SetActive(false);
+        Factory.Inst.GetObject(Pool_Object_Type.PLayer_hit, collision.contacts[0].point);
+    
+        gameObject.SetActive(false);
+        //hitExplosion.SetActive(true);
+        //hitExplosion.transform.position = collision.contacts[0].point; //충돌지점으로 이펙트 위치 옮기기
+        //hitExplosion.transform.Rotate(0, 0, UnityEngine.Random.Range(0, 360.0f));
 
-        }
+        //EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>(); // 태그가 Enemy 이기때문에 EnemyBase가 null이 아니다.
+        // onEnemyKill?.Invoke(enemy.Score); // onEnemyKill에 연결된 함수를 모두 실행하기 (하나도 없으면 실행)
+
+
+
     }
 }

@@ -17,7 +17,8 @@ public class Spawner : MonoBehaviour
         public Pool_Object_Type spawnType;
         public float interval;
     }
-    public List <SpawnData>spawnDatas;
+    //public List <SpawnData>spawnDatas;
+    public SpawnData[] spawnDatas;
 
     Transform destination;
     Player player;
@@ -38,10 +39,9 @@ public class Spawner : MonoBehaviour
     }
     protected virtual EnemyBase Spawn(Pool_Object_Type type)
     {
-        GameObject obj = Factory.Inst.GetObject(type);
-        obj.transform.position = new Vector3(transform.position.x, UnityEngine.Random.Range(-rangeY, rangeY), 0);
-        EnemyBase enemy = obj.GetComponent<EnemyBase>();
+        GameObject obj = Factory.Inst.GetObject(type, new Vector3(transform.position.x, UnityEngine.Random.Range(-rangeY, rangeY), 0));
 
+        EnemyBase enemy = obj.GetComponent<EnemyBase>();
         switch (type)
         {
             case Pool_Object_Type.Enemy_Asteroid:

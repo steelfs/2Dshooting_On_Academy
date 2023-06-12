@@ -107,8 +107,8 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            GameObject newbullet = Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet);
-            newbullet.transform.position = fireTransform.position;
+            Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet, fireTransform.position);
+     
 
            // Bullet bulletComp = newbullet.GetComponent<Bullet>();
             //bulletComp.onEnemyKill += AddScore; 아래와 같은 코드 OnEnemyKill 에 AddScore함수 등록

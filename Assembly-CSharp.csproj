@@ -90,6 +90,7 @@
     <Compile Include="Assets\Script\Enemy\Enemy_Missile.cs" />
     <Compile Include="Assets\Script\Test\TestBase.cs" />
     <Compile Include="Assets\Action\EnemyInputAction.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\PlayerHitPool.cs" />
     <Compile Include="Assets\Action\CapsuleMove.cs" />
     <Compile Include="Assets\Script\Etc\KillZone.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyFighter.cs" />
@@ -105,6 +106,15 @@
     <Compile Include="Assets\Script\Effect\Hit_Effect.cs" />
     <Compile Include="Assets\Script\Core\Factory.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCurve.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\ExplosionPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\EnemyCurvePool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\EnemyStrikePool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\EnemyAsteroidPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\EnemyAsteroidMiniPool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\Monster1Pool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\Monster2Pool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\Monster3Pool.cs" />
+    <Compile Include="Assets\Script\Pool\Pools\EnemyFighterPool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
