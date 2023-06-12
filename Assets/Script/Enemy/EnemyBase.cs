@@ -88,12 +88,8 @@ public class EnemyBase : PooledObject
         {
             onDie -= GameManager.Inst.Player.AddScore;
         }
+
         gameObject.SetActive(false);
-
-
- 
-
-
     }
 }
 

@@ -17,6 +17,8 @@ public class EnemyBoss : EnemyBase
     Vector3 targetPos;
     Vector3 moveDirection;
 
+    float currentSpeed = 0.0f; //현재이동속도
+
     protected override void Awake()
     {
         base.Awake();
@@ -37,9 +39,8 @@ public class EnemyBoss : EnemyBase
 
     IEnumerator AppearProcess()
     {
-        Debug.Log("어피어프로세스");
-        float oldSpeed = speed; //기존속도 저장
-        speed = 0.0f; // 속도를 0으로 안움직이게 만듦
+        currentSpeed = 0.0f; //현재속도를 0으로 만들기 
+       
         float remainDistance = 5; //남은 거리 5
 
         while (remainDistance > 0.01f) // 남아있는 거리가 거의 0이 될 때 까지 반복
@@ -51,14 +52,14 @@ public class EnemyBoss : EnemyBase
                        
             yield return null;
         }
-        speed = oldSpeed;
+        currentSpeed = speed; //oldspeed가 적용되지 않는 이유 :  stop 된 시점이 이미 speed가 이미 0이기 때문에 oldSpeed가 의미가 없다
         StartCoroutine(BulletFire());
         SetNextTargetPos();
     }
     protected override void OnMoveUpdate()
     {
         Debug.Log("온무브업데이트");
-        transform.Translate(Time.deltaTime * speed * moveDirection);
+        transform.Translate(Time.deltaTime * currentSpeed * moveDirection);
         //if (targetPos == transform.position) //최악의 코드 float 이기 대문에 같은걸 판단하기 힘듦
 
         //if ((targetPos - transform.position).sqrMagnitude < 0.0001f) //아래 if문 코드가 연산량이 훨씬 적다
