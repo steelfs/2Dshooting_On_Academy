@@ -345,7 +345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   dirChangeInterval: 100
-  dirchangeMaxCount: 5
+  dirchangeMaxCount: 6
 --- !u!95 &1307802904
 Animator:
   serializedVersion: 5
