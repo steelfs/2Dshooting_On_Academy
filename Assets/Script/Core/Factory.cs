@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum Pool_Object_Type
 {
@@ -144,6 +145,21 @@ public class Factory : Singleton<Factory>
         GameObject obj = GetObject(type);
         obj.transform.position = position;
         obj.transform.Rotate(angle * Vector3.forward);
+
+        switch (type)
+        {
+            case Pool_Object_Type.Enemy_Asteroid_Mini:
+                obj.transform.position = position;
+                obj.transform.Rotate(angle * Vector3.forward);
+                EnemyAsteroidMini mini = obj.GetComponent<EnemyAsteroidMini>();
+                mini.Direction = -mini.transform.right;
+                break;
+            case Pool_Object_Type.Enemy_Curve:
+                EnemyCurve curve = obj.GetComponent<EnemyCurve>();
+                curve.StartY = position.y;
+                break;
+
+        }
         return obj;
     }
 
@@ -154,5 +170,18 @@ public class Factory : Singleton<Factory>
         mini.transform.Rotate(angle * Vector3.forward);
         mini.Direction = -mini.transform.right;
         return mini;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="pos">월드좌표기준 생성되는 위치</param>
+    /// <returns>가져온 커브 적</returns>
+    public EnemyCurve GetEnemyCurve(Vector3 pos)
+    {
+        EnemyCurve curve = enemyCurvePool.GetObject();
+        curve.transform.position = pos;
+        curve.StartY = pos.y;
+        return curve;
     }
 }

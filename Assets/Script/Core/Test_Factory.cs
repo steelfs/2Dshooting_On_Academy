@@ -25,4 +25,9 @@ public class Test_Factory : TestBase
         }
         objects.Clear();
     }
+    protected override void Test3(InputAction.CallbackContext context)
+    {
+        EnemyCurve curve = Factory.Inst.GetEnemyCurve(transform.position);
+        objects.Add(curve.gameObject);
+    }
 }
