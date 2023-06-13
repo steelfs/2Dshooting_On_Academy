@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f0467f5737cf97542804f43057b49dad, type: 2}
+    - target: {fileID: 8136468585860276384, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}
+      propertyPath: dirChangeInterval
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8136468585860276396, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}
       propertyPath: m_Name
       value: PowerUp
@@ -448,6 +452,18 @@ PrefabInstance:
     - target: {fileID: 8136468585860276397, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136468585926939739, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136468585926939739, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136468585926939739, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7c3c1d191beaa94e9227b06bd9146b6, type: 3}

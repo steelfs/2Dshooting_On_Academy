@@ -12,28 +12,33 @@ public class PowerUp : PooledObject
 
     public int dirChangeCount;
     public int dirchangeMaxCount = 5;
-
+    Animator anim;
     public int DirChangeCount
     {
         get => dirChangeCount;
         set 
         {
             dirChangeCount = value;
+            Debug.Log(dirChangeCount);
+            anim.SetInteger("SetInt", dirChangeCount);
             if (dirChangeCount < 1)
             {
                 StopAllCoroutines();
             }
         }
     }
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
-    Animator anim;
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        dirChangeCount = dirchangeMaxCount;
         StopAllCoroutines();
         StartCoroutine(DirChange());
-       anim = GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -50,8 +55,8 @@ public class PowerUp : PooledObject
             yield return new WaitForSeconds(dirChangeInterval);
             dir = Random.insideUnitCircle;
             dir.Normalize();
-            dirChangeCount--;
-            StartCoroutine(PlayAnim());
+            DirChangeCount--;
+ 
             Debug.Log(dirChangeCount);
         }     
     }
@@ -60,25 +65,7 @@ public class PowerUp : PooledObject
         if (dirChangeCount > 0 && collision.gameObject.CompareTag("Boarder"))
         {
             dir = Vector2.Reflect(dir, collision.contacts[0].normal);
-            dirChangeCount--;
+            DirChangeCount--;
         }
-
-        if (collision.gameObject.CompareTag("Boarder"))
-        {
-            dir = Vector2.Reflect(dir, collision.contacts[0].normal);
-            dirChangeCount++;
-            StartCoroutine(PlayAnim()); 
-            Debug.Log(dirChangeCount);
-            if(dirChangeCount >= dirchangeMaxCount)
-            {
-                dir = Vector2.right;
-            }
-        }
-    }
-    IEnumerator PlayAnim()
-    {
-        anim.SetInteger("SetInt", 1);
-        yield return new WaitForSeconds(0.5f);
-        anim.SetInteger("SetInt", 0);
     }
 }
