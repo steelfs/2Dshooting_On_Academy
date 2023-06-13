@@ -10,7 +10,7 @@ public class PowerUp : PooledObject
 
     Vector2 dir;
 
-    public int dirChangeCount;
+    int dirChangeCount;
     public int dirchangeMaxCount = 5;
     Animator anim;
     public int DirChangeCount
@@ -36,28 +36,23 @@ public class PowerUp : PooledObject
     protected override void OnEnable()
     {
         base.OnEnable();
-        dirChangeCount = dirchangeMaxCount;
+        DirChangeCount = dirchangeMaxCount;
         StopAllCoroutines();
         StartCoroutine(DirChange());
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        transform.Translate(Time.fixedDeltaTime * moveSpeed * dir);
+        transform.Translate(Time.deltaTime * moveSpeed * dir);
     }
     IEnumerator DirChange()
     {
         while (true)
         {
-            //if (dirChangeCount >= dirchangeMaxCount)
-            //{
-            //    yield break;
-            //}
-            yield return new WaitForSeconds(dirChangeInterval);
             dir = Random.insideUnitCircle;
             dir.Normalize();
-            DirChangeCount--;
- 
-            Debug.Log(dirChangeCount);
+      
+            yield return new WaitForSeconds(dirChangeInterval);
+            DirChangeCount--;     
         }     
     }
     private void OnCollisionEnter2D(Collision2D collision)
