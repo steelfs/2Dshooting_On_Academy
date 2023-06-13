@@ -18,7 +18,8 @@ public enum Pool_Object_Type
     Enemy_Strike,
     Monster1,
     Monster2,
-    Monster3
+    Monster3,
+    PowerUp
 }
 
 public class Factory : Singleton<Factory>
@@ -39,6 +40,7 @@ public class Factory : Singleton<Factory>
     Monster1Pool monster1Pool;
     Monster2Pool monster2Pool;
     Monster3Pool monster3Pool;
+    PowerUpPool powerUpPool;
 
 
     protected override void OnInitialize()
@@ -58,6 +60,7 @@ public class Factory : Singleton<Factory>
         monster1Pool = GetComponentInChildren<Monster1Pool>();
         monster2Pool = GetComponentInChildren<Monster2Pool>();
         monster3Pool = GetComponentInChildren<Monster3Pool>();
+        powerUpPool = GetComponentInChildren<PowerUpPool>();
 
         bulletPool?.Initialize();
         bossPool?.Initialize();
@@ -73,6 +76,7 @@ public class Factory : Singleton<Factory>
         monster1Pool?.Initialize();
         monster2Pool?.Initialize();
         monster3Pool?.Initialize();
+        powerUpPool?.Initialize();
 
 
     }
@@ -120,10 +124,11 @@ public class Factory : Singleton<Factory>
             case Pool_Object_Type.Monster2:
                 result = monster2Pool?.GetObject()?.gameObject;
                 break;
-
-
             case Pool_Object_Type.Monster3:
                 result = monster3Pool?.GetObject()?.gameObject;
+                break;
+            case Pool_Object_Type.PowerUp:
+                result = powerUpPool?.GetObject()?.gameObject;
                 break;
             default:
                 result = new GameObject();
@@ -157,6 +162,7 @@ public class Factory : Singleton<Factory>
             case Pool_Object_Type.Enemy_Curve:
                 EnemyCurve curve = obj.GetComponent<EnemyCurve>();
                 curve.StartY = position.y;
+                Debug.Log("스위치 스폰");
                 break;
 
         }
