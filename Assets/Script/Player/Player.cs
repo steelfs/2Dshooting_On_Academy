@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
+
 public class Player : MonoBehaviour
 {
     public float moveableRangeX = 8.2f; 
@@ -33,9 +34,33 @@ public class Player : MonoBehaviour
     }
     public Action<int> OnScoreChange; // 1. 델리게이트를 만들어준다  2. 어디서 호출할지를 지정한다. 호출위치에서 함수이름?.Invoke(매개변수)
                                       // 3. 다른곳에서 델리게이트를 만든 클래스,객체를 찾은 다음 델리게이트 함수에 다른 함수를 연결해준다. 
+    public int powerBonus = 300;
+    private int power = 0;
+    private int Power
+    {
+        get => power;
+        set
+        {
+            if (power != value)
+            {
+                power = value;
+
+                if (power > 3)
+                {
+                    AddScore(powerBonus);
+                }
+                power = Mathf.Clamp(power, 1, 3);
+                RefreshFirePositions(power);
+                Debug.Log(power);
+
+            }
+        }
+    }
+    public float fireAngle = 30.0f;
 
     public float speed = 2.0f;
     public float fireInterval = 0.2f;
+
     float boost = 1.0f;
     Vector3 direction;
     PlayerInputAction playerInputAction;
@@ -46,7 +71,7 @@ public class Player : MonoBehaviour
     public GameObject fireFlash; //총알 발사 이펙트
     GameObject Explosion;
 
-    Transform fireTransform; //총알 발사위치
+    Transform[] fireTransforms; //총알 발사위치
 
     WaitForSeconds fireWait; //캐싱
     WaitForSeconds flashWait;
@@ -62,13 +87,24 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
 
         fireCoroutine = FireCoroutine(); //함수자체를 저장
-        fireTransform = transform.GetChild(0);
+        
+        Transform fireRoot = transform.GetChild(0); //발사위치 루트 찾기
+        fireTransforms= new Transform[fireRoot.childCount]; //루트의 자식 수 만크 배열 확보
+        for (int i= 0; i < fireTransforms.Length; i++)
+        {
+            fireTransforms[i] = fireRoot.GetChild(i); // 총알발사 트랜스폼 찾기
+        }
+
+
         fireWait = new WaitForSeconds(fireInterval); //코루틴에서 사용할 인터벌 미리 만들어놓기
         flashWait = new WaitForSeconds(0.1f); //캐싱
 
         fireFlash = transform.GetChild(1).gameObject;
-        Explosion = transform.GetChild(2).gameObject;
 
+    }
+    private void Start()
+    {
+        Power = 1;
     }
     private void OnEnable()
     {
@@ -107,7 +143,12 @@ public class Player : MonoBehaviour
     {
         while (true)
         {
-            Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet, fireTransform.position);
+            for (int i= 0; i < Power; i++)
+            {
+                Transform firePos = fireTransforms[i];
+                Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet, firePos.position, firePos.rotation.eulerAngles.z);
+            }
+           
      
 
            // Bullet bulletComp = newbullet.GetComponent<Bullet>();
@@ -198,12 +239,32 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.gameObject.CompareTag("Enemy"))
-        //{
-        //    Explosion.transform.SetParent(null);
-        //    Explosion.SetActive(true);
-        //    Destroy(gameObject);
-        //}
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+
+            Power ++;
+            collision.gameObject.SetActive(false);
+        }
     }
-    //delegate = 함수를 변수처럼 , 신호를 보내면 각각 신호를 받은 객체에서 독립된 로직을 실행한다.
+    void RefreshFirePositions(int power) //
+    {
+        for (int i = 0; i < fireTransforms.Length; i++)
+        {
+            fireTransforms[i].gameObject.SetActive(false);//모든 하위 발사위치를 비활성화
+        }
+
+        for (int i = 0; i < power; i++)
+        {
+            //총알간 사이각 30도 
+            // power 1일 때  0도 회전
+            // 2일때 1개는 -15도 1개는 15도 회전
+            // 3일 때 -30, 0, 30도 회전 
+
+            fireTransforms[i].rotation = Quaternion.Euler(0, 0, (power - 1) * (fireAngle * 0.5f) + (i * -fireAngle));//power로 시작각 정하고 추가로 i * 발사각만큼 추가
+            fireTransforms[i].localPosition = Vector3.zero;
+            fireTransforms[i].Translate(0.5f, 0, 0);
+
+            fireTransforms[i].gameObject.SetActive(true);
+        }
+    }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Bullet
   - Boarder
+  - Item
+  - PowerUp
   layers:
   - Default
   - TransparentFX
