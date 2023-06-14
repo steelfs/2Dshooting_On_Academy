@@ -56,6 +56,31 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    private int life = 3;
+    private int Life
+    {
+        get => life;
+        set
+        {
+            life = value;
+            OnHit();//적에게 맞았을때 실행
+
+            if (life <= 0)
+            {
+                OnDie();
+            }
+            onLifeChange?.Invoke(life);
+            Debug.Log($"life : {life}");
+        }
+    }
+    public int initialLife = 3;
+    public float invincibleTime = 2.0f;
+
+    public Action<int> onLifeChange;
+
+
+
     public float fireAngle = 30.0f;
 
     public float speed = 2.0f;
@@ -105,6 +130,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Power = 1;
+        Life = initialLife;
     }
     private void OnEnable()
     {
@@ -239,9 +265,12 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("PowerUp"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-
+            Life--;
+        }
+        else if (collision.gameObject.CompareTag("PowerUp"))
+        {
             Power ++;
             collision.gameObject.SetActive(false);
         }
@@ -266,5 +295,21 @@ public class Player : MonoBehaviour
 
             fireTransforms[i].gameObject.SetActive(true);
         }
+    }
+    private void OnHit()
+    {
+        Power--;
+        StartCoroutine(EnterInvincible());
+    }
+
+    IEnumerator EnterInvincible()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Invincible");
+        yield return new WaitForSeconds(invincibleTime);
+        gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+    private void OnDie()
+    {
+       
     }
 }

@@ -75,6 +75,7 @@ public class PowerUp : PooledObject
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         if (dirChangeCount > 0 && collision.gameObject.CompareTag("Boarder"))
         {
             dir = Vector2.Reflect(dir, collision.contacts[0].normal);
