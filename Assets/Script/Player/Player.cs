@@ -21,16 +21,15 @@ public class Player : MonoBehaviour
             if (score != value)
             {
                 score = value;
-            }
-            //OnScoreChange?.Invoke(score);
-            score = value;
-
-            
+                OnScoreChange?.Invoke(score);
+                Debug.Log("프로퍼티 값 변경");
+            }                    
         }
     }
     public void AddScore(int newscore)
     {
         Score += newscore;
+        Debug.Log("에드스코어 실행");
     }
     public Action<int> OnScoreChange; // 1. 델리게이트를 만들어준다  2. 어디서 호출할지를 지정한다. 호출위치에서 함수이름?.Invoke(매개변수)
                                       // 3. 다른곳에서 델리게이트를 만든 클래스,객체를 찾은 다음 델리게이트 함수에 다른 함수를 연결해준다. 
@@ -51,8 +50,6 @@ public class Player : MonoBehaviour
                 }
                 power = Mathf.Clamp(power, 1, 3);
                 RefreshFirePositions(power);
-                Debug.Log(power);
-
             }
         }
     }
@@ -71,7 +68,6 @@ public class Player : MonoBehaviour
                 OnDie();
             }
             onLifeChange?.Invoke(life);
-            Debug.Log($"life : {life}");
         }
     }
     public int initialLife = 3;

@@ -54,7 +54,6 @@ public class PowerUp : PooledObject
     }
     IEnumerator DirChange()
     {
-        Debug.Log("방향수정");
         // 40% 확률로 플레이어 반대방향으로 이동하게 만들기 
         float normalCase = 1.4f;
         

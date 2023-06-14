@@ -18,7 +18,7 @@ public class ScoreTxt : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        Player player = GameManager.Inst.Player;
         currentScore = player.Score;
         targetScore = player.Score;
         scoreUI.text = $"Score : {currentScore:f0}";
@@ -28,7 +28,7 @@ public class ScoreTxt : MonoBehaviour
     public void UpdateScoreTxt(int score)
     {
         targetScore = score;
-    
+        Debug.Log("업데이트 스코어텍스트");
     }
     void PrintScore(int score)
     {

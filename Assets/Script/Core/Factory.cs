@@ -162,7 +162,6 @@ public class Factory : Singleton<Factory>
             case Pool_Object_Type.Enemy_Curve:
                 EnemyCurve curve = obj.GetComponent<EnemyCurve>();
                 curve.StartY = position.y;
-                Debug.Log("스위치 스폰");
                 break;
 
         }

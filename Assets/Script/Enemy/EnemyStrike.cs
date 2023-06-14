@@ -12,6 +12,7 @@ public class EnemyStrike : EnemyBase
 
     protected override void OnInitialize()
     {
+        base.OnInitialize();
         StopAllCoroutines();
         StartCoroutine(AppearProcess());
     }
