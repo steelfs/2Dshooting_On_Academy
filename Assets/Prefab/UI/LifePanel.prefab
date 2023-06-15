@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 1869761042209439490}
   - component: {fileID: 1869761042209439491}
   - component: {fileID: 1869761042209439500}
-  - component: {fileID: 1869761042209439501}
+  - component: {fileID: 6995491600556304804}
   m_Layer: 5
   m_Name: LifePanel
   m_TagString: Untagged
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &1869761042209439501
+--- !u!114 &6995491600556304804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

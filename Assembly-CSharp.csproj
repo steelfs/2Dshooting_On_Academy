@@ -60,7 +60,6 @@
     <Compile Include="Assets\Script\Pool\Pools\BulletPool.cs" />
     <Compile Include="Assets\Script\Pool\Pools\BossMissilePool.cs" />
     <Compile Include="Assets\Script\UI\LifePanel.cs" />
-    <Compile Include="Assets\Script\UI\Life.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyForTest.cs" />
     <Compile Include="Assets\Script\Core\Test_Factory.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBase.cs" />

@@ -1,8 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Life : MonoBehaviour
+public class LifePanel : MonoBehaviour
 {
-   //플레이어의 HP가 변경되면 UI ㅔㅇ서 변경되서 보여주기
+    TextMeshProUGUI lifeText;
+    private void Awake()
+    {
+        lifeText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+    }
+    private void Start()
+    {
+        GameManager.Inst.Player.onLifeChange += (life) => lifeText.text = life.ToString();
+    }
 }
