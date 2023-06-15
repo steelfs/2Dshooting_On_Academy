@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6810235435309301004}
   - component: {fileID: 6810235435309301005}
   - component: {fileID: 21421323611225247}
-  - component: {fileID: 1670843836}
   m_Layer: 8
   m_Name: Enemy_Strike
   m_TagString: Enemy
@@ -158,26 +157,6 @@ BoxCollider2D:
   m_Size: {x: 1.35, y: 1.1}
   m_EdgeRadius: 0
 --- !u!114 &21421323611225247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6810235434472811119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9949dcb2d68a3641822b21b5a786111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  waitTimeX: 1
-  score: 10
-  maxHp: 1
-  hp: 1
-  secondSpeed: 10
-  appearTime: 1
-  waitTime: 5
---- !u!114 &1670843836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
