@@ -55,7 +55,7 @@ public class PowerUp : PooledObject
     IEnumerator DirChange()
     {
         // 40% 확률로 플레이어 반대방향으로 이동하게 만들기 
-        float normalCase = 1.4f;
+        float normalCase = 0.4f;
         
 
 

@@ -7,10 +7,12 @@ public class ScoreTxt : MonoBehaviour
 {
     TextMeshProUGUI scoreUI;
     Player player;
+    EnemyBase enemyBase;
     int targetScore = 0;// 목표점수
     float  currentScore = 0.0f;// 현재점수
 
     public float scoreSpeed = 50.0f;// 점수 올라가는 속도
+    float additionalSpeed = 0.0f;
     private void Awake()
     {
         scoreUI = GetComponent<TextMeshProUGUI>();
@@ -19,16 +21,22 @@ public class ScoreTxt : MonoBehaviour
     private void Start()
     {
         Player player = GameManager.Inst.Player;
+        enemyBase = GameManager.Inst.enemy;
+        
         currentScore = player.Score;
         targetScore = player.Score;
         scoreUI.text = $"Score : {currentScore:f0}";
-
+        
         player.OnScoreChange += UpdateScoreTxt;
     }
     public void UpdateScoreTxt(int score)
-    {
+    { 
         targetScore = score;
-        Debug.Log("업데이트 스코어텍스트");
+        
+    }
+    public void SetAdditionalSpeed(int EnemyScore)
+    {
+        additionalSpeed = EnemyScore * 0.01f;
     }
     void PrintScore(int score)
     {
@@ -38,7 +46,9 @@ public class ScoreTxt : MonoBehaviour
     {
         if (currentScore < targetScore) //타겟스코어가 현재 스코어보다 커지면 
         {
-            currentScore += Time.deltaTime * scoreSpeed; //초당 스피드의 속도로 현재스코어 증가
+            float speed = Mathf.Max((targetScore - currentScore) * 5.0f, scoreSpeed);
+           
+            currentScore += Time.deltaTime * speed; //초당 스피드의 속도로 현재스코어 증가
             currentScore = Mathf.Min(currentScore, targetScore);// 현재 스코어가 타겟스코어보다 커지지 않도록하기
             scoreUI.text = $"Score : {currentScore:0f}";
         }

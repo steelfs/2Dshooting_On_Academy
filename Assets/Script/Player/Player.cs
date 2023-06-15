@@ -22,14 +22,12 @@ public class Player : MonoBehaviour
             {
                 score = value;
                 OnScoreChange?.Invoke(score);
-                Debug.Log("프로퍼티 값 변경");
             }                    
         }
     }
     public void AddScore(int newscore)
     {
         Score += newscore;
-        Debug.Log("에드스코어 실행");
     }
     public Action<int> OnScoreChange; // 1. 델리게이트를 만들어준다  2. 어디서 호출할지를 지정한다. 호출위치에서 함수이름?.Invoke(매개변수)
                                       // 3. 다른곳에서 델리게이트를 만든 클래스,객체를 찾은 다음 델리게이트 함수에 다른 함수를 연결해준다. 
@@ -61,21 +59,25 @@ public class Player : MonoBehaviour
         set
         {
             life = value;
-            OnHit();//적에게 맞았을때 실행
-
-            if (life <= 0)
+            if (life > 0)
+            {
+                OnHit();//적에게 맞았을때 실행
+            }
+            else
             {
                 OnDie();
             }
             onLifeChange?.Invoke(life);
         }
     }
+    bool isAlive => life > 0;// 생존을 판단하는 프로퍼티
+
     public int initialLife = 3;
+
     public float invincibleTime = 2.0f;
 
     public Action<int> onLifeChange;
-
-
+    public Action<int> onDie; //파라미터는 최종점수
 
     public float fireAngle = 30.0f;
 
@@ -99,14 +101,16 @@ public class Player : MonoBehaviour
 
     Rigidbody2D rigid;
 
-  
+    SpriteRenderer spriteRenderer;
+    bool isInvincible = false;
+    float timeElapsed = 0.0f;
 
     private void Awake()
     {
         playerInputAction = new PlayerInputAction();
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
         fireCoroutine = FireCoroutine(); //함수자체를 저장
         
         Transform fireRoot = transform.GetChild(0); //발사위치 루트 찾기
@@ -115,13 +119,10 @@ public class Player : MonoBehaviour
         {
             fireTransforms[i] = fireRoot.GetChild(i); // 총알발사 트랜스폼 찾기
         }
-
-
         fireWait = new WaitForSeconds(fireInterval); //코루틴에서 사용할 인터벌 미리 만들어놓기
         flashWait = new WaitForSeconds(0.1f); //캐싱
 
         fireFlash = transform.GetChild(1).gameObject;
-
     }
     private void Start()
     {
@@ -170,9 +171,6 @@ public class Player : MonoBehaviour
                 Transform firePos = fireTransforms[i];
                 Factory.Inst.GetObject(Pool_Object_Type.Player_Bullet, firePos.position, firePos.rotation.eulerAngles.z);
             }
-           
-     
-
            // Bullet bulletComp = newbullet.GetComponent<Bullet>();
             //bulletComp.onEnemyKill += AddScore; 아래와 같은 코드 OnEnemyKill 에 AddScore함수 등록
             //bulletComp.onEnemyKill += (newScore) => Score += newScore; // 람다식 (newScore 파라미터) 이후는 함수 바디부분
@@ -228,11 +226,29 @@ public class Player : MonoBehaviour
     //}
 
 
-    // Update is called once per frame
+    private void Update()
+    {
+        if (isInvincible)
+        {
+            timeElapsed += Time.deltaTime * 30; //시간변화를 증폭시켜서 누적시키기
+            float alpha = (Mathf.Cos(timeElapsed) + 1.0f) * 0.5f; //코사인 결과를 0~1 사이로 변경
+            spriteRenderer.color = new Color(1, 1, 1, alpha);
+        }
+    }
     private void FixedUpdate()
     {
         //transform.position += Time.deltaTime * speed * boost * direction;
-        rigid.MovePosition(rigid.position + (Vector2)(Time.deltaTime * speed * boost * direction));
+        if (isAlive)
+        {
+            rigid.MovePosition(rigid.position + (Vector2)(Time.fixedDeltaTime* speed * boost * direction));
+        }
+        //else
+        //{
+        //    rigid.AddTorque(30.0f); // 회전력 더하기  z축방향으로 30도씩 회전
+        //   //  //특정방향으로 힘을 더하기 왼쪽방향으로 0.3만큼
+        //}
+     
+
     }
 
  
@@ -261,7 +277,7 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("EnemyBullet"))
         {
             Life--;
         }
@@ -295,17 +311,43 @@ public class Player : MonoBehaviour
     private void OnHit()
     {
         Power--;
-        StartCoroutine(EnterInvincible());
+        StartCoroutine(EnterInvincible()); //무적모드 진입
     }
 
-    IEnumerator EnterInvincible()
+    IEnumerator EnterInvincible()// 무적모드 들어가고 시간 지나면 원상복귀되는 코루틴
     {
         gameObject.layer = LayerMask.NameToLayer("Invincible");
-        yield return new WaitForSeconds(invincibleTime);
-        gameObject.layer = LayerMask.NameToLayer("Player");
+        isInvincible = true;//무적모드 돌입
+        timeElapsed = 0.0f; // 알파값 변환을 위한 시간누적 변수
+        
+        yield return new WaitForSeconds(invincibleTime); //무적시간 
+
+        spriteRenderer.color= Color.white;  //알파값 원상복귀
+        isInvincible = false;               // 무적모드 끝
+        gameObject.layer = LayerMask.NameToLayer("Player"); // 레이어 원상복귀
     }
     private void OnDie()
     {
+        Collider2D bodyCollider = GetComponent<Collider2D>();
+        bodyCollider.enabled = false; //콜라이더 비활성화
+
+        Factory.Inst.GetObject(Pool_Object_Type.Enemy_Explosion, transform.position); //터지는 이펙트 추가
+
+        playerInputAction.Player.Disable(); //플에이어 입력 막기
+
+        direction = Vector3.zero; //이동 초기화
+        StopAllCoroutines();        //연사코루틴 정지
+
+        rigid.gravityScale = 1.0f;
+        rigid.freezeRotation = false;
+
+        rigid.AddTorque(10000);
+        rigid.AddForce(Vector2.left * 10.0f, ForceMode2D.Impulse);
        
+        onDie?.Invoke(Score);
+    }
+    void TestDie()
+    {
+        Life = 0;
     }
 }

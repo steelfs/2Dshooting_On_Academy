@@ -117,6 +117,8 @@
     <Compile Include="Assets\Script\Core\Factory.cs" />
     <Compile Include="Assets\Script\Pool\Pools\EnemyFighterPool.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCurve.cs" />
+    <Compile Include="Assets\Script\UI\LifePanel.cs" />
+    <Compile Include="Assets\Script\UI\Life.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
