@@ -244,6 +244,9 @@ MonoBehaviour:
   moveableRangeX: 8.2
   moveableRangeY: 4.3
   powerBonus: 300
+  initialLife: 3
+  invincibleTime: 2
+  fireAngle: 30
   speed: 7
   fireInterval: 0.2
   bullet: {fileID: 8286026840257845466, guid: 8b1f356c49a2cdf4ebfef03cbf7b287d, type: 3}
@@ -272,7 +275,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3122702947933893208}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0

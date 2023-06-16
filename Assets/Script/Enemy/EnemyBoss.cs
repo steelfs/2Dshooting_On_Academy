@@ -97,6 +97,8 @@ public class EnemyBoss : EnemyBase
         targetPos = new Vector3(x, y);
         moveDirection = targetPos - transform.position;
         moveDirection.Normalize();// 속도를 일정하게 하기 위해 방향만 남겨놓고 길이를 1로 남겨놓는다. 정규화
+    
+        Debug.Log("미사일파이어 호출");
     }
 
     IEnumerator BulletFire()
