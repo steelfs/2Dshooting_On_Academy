@@ -85,12 +85,9 @@ public class EnemyBase : PooledObject
     }
     protected virtual void Die()
     {
-        GameObject explosionEffect = Factory.Inst.GetObject(Pool_Object_Type.Enemy_Explosion);
-        explosionEffect.transform.position = transform.position;
+        GameObject explosionEffect = Factory.Inst.GetObject(Pool_Object_Type.Enemy_Explosion, transform.position, UnityEngine.Random.Range(0.0f, 360.0f));
         //explosion.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0.0f, 360));
-        explosionEffect.transform.Rotate(0,0,UnityEngine. Random.Range(0, 360.0f));
-        explosionEffect.SetActive(true);
-
+       // explosionEffect.SetActive(true);
         onDie?.Invoke(score);
        
         gameObject.SetActive(false);

@@ -19,11 +19,7 @@ public class RankPanel : MonoBehaviour
     }
     private void Start()
     {
-        rankLines[0].SetData("AAA", 123456);
-        rankLines[1].SetData("BBB", 123456);
-        rankLines[2].SetData("CCC", 123456);
-        rankLines[3].SetData("DDD", 123456);
-        rankLines[4].SetData("AAB", 123456);
+        SetDefaultData();
     }
     private void SetDefaultData()
     {
