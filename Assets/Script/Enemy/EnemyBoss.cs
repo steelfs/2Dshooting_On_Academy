@@ -66,16 +66,21 @@ public class EnemyBoss : EnemyBase
         //    //타겟지점에 거의 가까워지면
         //    SetNextTargetPos();
         //}
-        if (transform.position.y > areaMax.y) // 위 코드는 vector의 값을 모두 계산해야하지만 아래 if문은 Y값만 계산을 하기 때문에 연산량이 훨씬 적다
+        if ((targetPos - transform.position).sqrMagnitude < 0.01f)
         {
             SetNextTargetPos();
             StartCoroutine(MissileFire());
         }
-        else if (transform.position.y < areaMin.y)
-        {
-            SetNextTargetPos();
-            StartCoroutine(MissileFire());
-        }
+        //if (transform.position.y > areaMax.y) // 위 코드는 vector의 값을 모두 계산해야하지만 아래 if문은 Y값만 계산을 하기 때문에 연산량이 훨씬 적다
+        //{
+        //    SetNextTargetPos();
+        //    StartCoroutine(MissileFire());
+        //}
+        //else if (transform.position.y < areaMin.y)
+        //{
+        //    SetNextTargetPos();
+        //    StartCoroutine(MissileFire());
+        //}
        
     }
 
@@ -95,10 +100,8 @@ public class EnemyBoss : EnemyBase
         }
        
         targetPos = new Vector3(x, y);
-        moveDirection = targetPos - transform.position;
-        moveDirection.Normalize();// 속도를 일정하게 하기 위해 방향만 남겨놓고 길이를 1로 남겨놓는다. 정규화
-    
-        Debug.Log("미사일파이어 호출");
+        moveDirection = (targetPos - transform.position).normalized;
+       // 속도를 일정하게 하기 위해 방향만 남겨놓고 길이를 1로 남겨놓는다. 정규화
     }
 
     IEnumerator BulletFire()

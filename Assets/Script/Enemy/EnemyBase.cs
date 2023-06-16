@@ -37,13 +37,14 @@ public class EnemyBase : PooledObject
     public Action<int> onDie;
     protected virtual void Awake()
     {
-        hp = maxHp;
+  
         
     }
     protected override void OnEnable()
     {
         base.OnEnable();
         OnInitialize();
+        hp = maxHp;
     }
 
     protected override void OnDisable()

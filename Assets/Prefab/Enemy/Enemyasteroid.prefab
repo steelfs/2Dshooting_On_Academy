@@ -109,7 +109,7 @@ MonoBehaviour:
   minRotateSpeed: 30
   maxRotateSpeed: 360
   rotateSpeed: 0
-  criticalRate: 0.95
+  criticalRate: 0.846
   minLifeTime: 4
   maxLifeTime: 7
 --- !u!58 &1696315592604541535
