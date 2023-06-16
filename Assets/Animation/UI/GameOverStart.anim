@@ -21,8 +21,8 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.033333335
-        value: 0.07343641
+        time: 0
+        value: 0
         inSlope: -0.21129084
         outSlope: -0.21129084
         tangentMode: 0
@@ -30,7 +30,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.10645634
       - serializedVersion: 3
-        time: 1.0166667
+        time: 1
         value: 0.9977951
         inSlope: -0.03197273
         outSlope: -0.03197273
@@ -44,6 +44,116 @@ AnimationClip:
     attribute: m_Alpha
     path: 
     classID: 225
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: GameOverText
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 250
+        inSlope: -306.4917
+        outSlope: -306.4917
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.45763147
+      - serializedVersion: 3
+        time: 0.31666666
+        value: 127.8764
+        inSlope: 5.3396983
+        outSlope: 5.3396983
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.18041173
+        outWeight: 0.2733562
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 218.32028
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 131.0618
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2
+        value: 187.81757
+        inSlope: -4.539794
+        outSlope: -4.539794
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.41196278
+        outWeight: 0.044432543
+      - serializedVersion: 3
+        time: 1.4333333
+        value: 132.07567
+        inSlope: 3.689165
+        outSlope: 3.689165
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.28247303
+      - serializedVersion: 3
+        time: 1.65
+        value: 166.59428
+        inSlope: -6.867142
+        outSlope: -6.867142
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.8333334
+        value: 130.43285
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: GameOverText
+    classID: 224
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -60,13 +170,27 @@ AnimationClip:
       typeID: 225
       customType: 0
       isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2185909552
+      attribute: 538195251
+      script: {fileID: 0}
+      typeID: 224
+      customType: 28
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2185909552
+      attribute: 1460864421
+      script: {fileID: 0}
+      typeID: 224
+      customType: 28
+      isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 1.8333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -86,8 +210,8 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.033333335
-        value: 0.07343641
+        time: 0
+        value: 0
         inSlope: -0.21129084
         outSlope: -0.21129084
         tangentMode: 0
@@ -95,7 +219,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.10645634
       - serializedVersion: 3
-        time: 1.0166667
+        time: 1
         value: 0.9977951
         inSlope: -0.03197273
         outSlope: -0.03197273
@@ -109,6 +233,116 @@ AnimationClip:
     attribute: m_Alpha
     path: 
     classID: 225
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.x
+    path: GameOverText
+    classID: 224
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 250
+        inSlope: -306.4917
+        outSlope: -306.4917
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.45763147
+      - serializedVersion: 3
+        time: 0.31666666
+        value: 127.8764
+        inSlope: 5.3396983
+        outSlope: 5.3396983
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.18041173
+        outWeight: 0.2733562
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 218.32028
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.96666664
+        value: 131.0618
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2
+        value: 187.81757
+        inSlope: -4.539794
+        outSlope: -4.539794
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.41196278
+        outWeight: 0.044432543
+      - serializedVersion: 3
+        time: 1.4333333
+        value: 132.07567
+        inSlope: 3.689165
+        outSlope: 3.689165
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.28247303
+      - serializedVersion: 3
+        time: 1.65
+        value: 166.59428
+        inSlope: -6.867142
+        outSlope: -6.867142
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.8333334
+        value: 130.43285
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_AnchoredPosition.y
+    path: GameOverText
+    classID: 224
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
