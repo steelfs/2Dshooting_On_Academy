@@ -385,6 +385,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 554072658139232819, guid: 7a13e3c04eaf6c141a32693e645fff41, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 554072658139232820, guid: 7a13e3c04eaf6c141a32693e645fff41, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -837,11 +841,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3122702947933893206, guid: d570d5896a4cd4c4285dbb6950390862, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.68
+      value: -7.78
       objectReference: {fileID: 0}
     - target: {fileID: 3122702947933893206, guid: d570d5896a4cd4c4285dbb6950390862, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.41
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 3122702947933893206, guid: d570d5896a4cd4c4285dbb6950390862, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1044,7 +1048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4827670373250321548, guid: b787d2e4f951cd84d9f0638a7cafc14d, type: 3}
       propertyPath: spawnDatas.Array.data[0].interval
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4827670373250321548, guid: b787d2e4f951cd84d9f0638a7cafc14d, type: 3}
       propertyPath: spawnDatas.Array.data[1].interval
@@ -1060,7 +1064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4827670373250321548, guid: b787d2e4f951cd84d9f0638a7cafc14d, type: 3}
       propertyPath: spawnDatas.Array.data[0].spawnType
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4827670373250321548, guid: b787d2e4f951cd84d9f0638a7cafc14d, type: 3}
       propertyPath: spawnDatas.Array.data[1].spawnType

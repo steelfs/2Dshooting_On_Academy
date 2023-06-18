@@ -9,10 +9,7 @@ public class Monster3 : EnemyBase
 
     WaitForSeconds movingInterval = new WaitForSeconds(2.0f);
     bool isMoving = true;
-    protected override void Awake()
-    {
-        base.Awake();       
-    }
+
     protected override void OnEnable()
     {
         base.OnEnable();

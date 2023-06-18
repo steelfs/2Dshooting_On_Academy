@@ -19,6 +19,7 @@ public class EnemyStrike : EnemyBase
 
     IEnumerator AppearProcess()
     {
+        speed = 3;
         yield return new WaitForSeconds(appearTime);
         speed = 0;
         yield return new WaitForSeconds(waitTime);

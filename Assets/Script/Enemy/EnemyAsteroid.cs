@@ -113,8 +113,10 @@ public class EnemyAsteroid : EnemyBase
 
     IEnumerator SelfCrush()
     {
+  
         float lifeTime = Random.Range(minLifeTime, maxLifeTime);
         yield return new WaitForSeconds(lifeTime);
+        score = AdditScore(0);
         Die();
     }
     public void Test_Die()

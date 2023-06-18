@@ -35,18 +35,17 @@ public class EnemyBase : PooledObject
     }
 
     public Action<int> onDie;
-    protected virtual void Awake()
-    {
-  
-        
-    }
+ 
     protected override void OnEnable()
     {
         base.OnEnable();
         OnInitialize();
         hp = maxHp;
     }
+    protected virtual void Awake()
+    {
 
+    }
     protected override void OnDisable()
     {         
         if (targetPlayer != null)
@@ -91,6 +90,10 @@ public class EnemyBase : PooledObject
         onDie?.Invoke(score);
        
         gameObject.SetActive(false);
+    }
+    protected int AdditScore(int fixedScore)
+    {
+        return score = fixedScore;
     }
 }
 ///CallStack 디버그창에서 멘마지막부분이 먼저 실행된 것이다.
