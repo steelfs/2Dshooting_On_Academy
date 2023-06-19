@@ -18,7 +18,8 @@ public class ScoreTxt : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Inst.Player;       
+        player = GameManager.Inst.Player;    
+        
         currentScore = player.Score;
         targetScore = player.Score;
         scoreUI.text = $"Score : {currentScore:f0}";
