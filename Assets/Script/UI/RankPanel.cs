@@ -132,7 +132,7 @@ public class RankPanel : MonoBehaviour
         {
             if (highScore[i] < score) //각 등수가 score보다 작으면 
             {
-                for(int j = rankCount -1; j > 1; j--) // 아래로 한칸씩 밀기
+                for(int j = rankCount -1; j > i; j--) // 아래로 한칸씩 밀기
                 {
                     highScore[j] = highScore[j - 1];
                     rankerName[j] = rankerName[j - 1];
