@@ -32,10 +32,11 @@ public class RankPanel : MonoBehaviour
     private void Start()
     {
         LoadRankingData(); //시작할때 저장된 데이터 불러오기
+        GameManager.Inst.Player.onDie += RankUpdate;
     }
 
 
-    private void SetDefaultData()//랭킹을 초기값으로 되돌리는 함수
+    public void SetDefaultData()//랭킹을 초기값으로 되돌리는 함수
     {
         for(int i = 0; i< rankCount; i++)
         {
@@ -138,6 +139,7 @@ public class RankPanel : MonoBehaviour
                 }
                 highScore[i] = score;
                 //rankerName[i] = "akakak";
+                rankLines[i].SetData("새 랭커", highScore[i]);
                 updatedIndex = i; // 밀리기 시작한 인덱스 저장해두기
 
                 Vector3 newPos = inputField.transform.position;
@@ -146,6 +148,7 @@ public class RankPanel : MonoBehaviour
                 inputField.gameObject.SetActive(true);
                 break;
             }
+        
         }
     }
     private void OnNameInputEnd(string text)// 인풋필드의 입력이 끝났을때 호출되는 AddListner에 등록된 함수

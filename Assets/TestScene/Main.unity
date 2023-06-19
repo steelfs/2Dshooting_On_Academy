@@ -1597,8 +1597,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDatas:
-  - spawnType: 3
-    interval: 1
+  - spawnType: 10
+    interval: 10
+  - spawnType: 2
+    interval: 200
+  - spawnType: 6
+    interval: 10
+  - spawnType: 9
+    interval: 2
+  - spawnType: 8
+    interval: 2
+  - spawnType: 8
+    interval: 2
   rangeY: 4
   rangeX: 0.5
 --- !u!1 &1428057073

@@ -50,6 +50,11 @@ public class Spawner : MonoBehaviour
                 EnemyAsteroid asteroid = enemy as EnemyAsteroid;
                 asteroid.Destination = destPos;
                 break;
+            case Pool_Object_Type.Enemy_Boss:
+                Vector3 pos = obj.transform.position;
+                pos.y = 0.0f;
+                obj.transform.position = pos;  
+                 break;
         }
         return enemy;
     }

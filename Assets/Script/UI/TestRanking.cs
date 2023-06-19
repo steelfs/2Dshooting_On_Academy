@@ -19,4 +19,8 @@ public class TestRanking : TestBase
     {
         rankPanel.TestRankUpdate(newScore);
     }
+    protected override void Test4(InputAction.CallbackContext context)
+    {
+        rankPanel.SetDefaultData();
+    }
 }
